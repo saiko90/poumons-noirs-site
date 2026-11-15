@@ -291,7 +291,7 @@ def page_accueil(l, avec_jeu):
     noms_videos = ["sergent-toi-oui-toi", "sergent-debout", "sergent-debout-pause-clope"]
     videos_sergent = "\n".join(
         f'<figure class="video"><video controls preload="none" playsinline poster="/video/{f}.jpg"><source src="/video/{f}.mp4" type="video/mp4"></video><figcaption>{e(t)}</figcaption></figure>'
-        for f, t in zip([n + "-v2" for n in noms_videos], d["videosSergent"]))
+        for f, t in zip([n + "-v3" for n in noms_videos], d["videosSergent"]))
     jeu = ""
     if avec_jeu:
         jeu = f"""
