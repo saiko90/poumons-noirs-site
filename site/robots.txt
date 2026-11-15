@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /ordre
 Disallow: /order
-Sitemap: https://poumons-noirs.vercel.app/sitemap.xml
+Sitemap: https://www.poumonsnoirs.com/sitemap.xml

@@ -6,6 +6,7 @@
   const API = "https://srcvnqfgtazupuzwznrr.supabase.co/rest/v1/rpc/pn_recrue";
   const CLE = "sb_publishable_YUwom0kvnMbpn8Rpug1FaA_1H35zkY_";
   const MOTIFS = ["lundi", "cachette", "vape", "craque", "pause", "prix", "bravo"];
+  const ORIGINE = location.hostname.endsWith(".vercel.app") ? "https://www.poumonsnoirs.com" : location.origin;
   const visageDuSergent = (img, nom) => { if (img) img.src = `/img/sergent/${nom}.webp`; };
 
   // ---------- Voix du Sergent ----------
@@ -129,7 +130,7 @@
     const motifChoisi = () => (mission.querySelector("input[name=motif]:checked") || {}).value || "lundi";
     const construire = () => {
       const nom = nettoyerNom(mission.elements.prenom.value);
-      const url = new URL(L === "fr" ? "/ordre" : "/order", location.origin);
+      const url = new URL(L === "fr" ? "/ordre" : "/order", ORIGINE);
       url.searchParams.set("m", motifChoisi());
       if (nom) url.searchParams.set("n", nom);
       const texte = (nom ? T.waNom.replace("{n}", nom) : T.waSans) + " " + url.toString();

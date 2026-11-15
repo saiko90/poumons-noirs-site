@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<url><loc>https://poumons-noirs.vercel.app/</loc><xhtml:link rel="alternate" hreflang="fr" href="https://poumons-noirs.vercel.app/"/><xhtml:link rel="alternate" hreflang="en" href="https://poumons-noirs.vercel.app/en"/></url>
-<url><loc>https://poumons-noirs.vercel.app/en</loc><xhtml:link rel="alternate" hreflang="fr" href="https://poumons-noirs.vercel.app/"/><xhtml:link rel="alternate" hreflang="en" href="https://poumons-noirs.vercel.app/en"/></url>
-<url><loc>https://poumons-noirs.vercel.app/privacy</loc></url>
+<url><loc>https://www.poumonsnoirs.com/</loc><xhtml:link rel="alternate" hreflang="fr" href="https://www.poumonsnoirs.com/"/><xhtml:link rel="alternate" hreflang="en" href="https://www.poumonsnoirs.com/en"/></url>
+<url><loc>https://www.poumonsnoirs.com/en</loc><xhtml:link rel="alternate" hreflang="fr" href="https://www.poumonsnoirs.com/"/><xhtml:link rel="alternate" hreflang="en" href="https://www.poumonsnoirs.com/en"/></url>
+<url><loc>https://www.poumonsnoirs.com/privacy</loc></url>
 </urlset>

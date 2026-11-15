@@ -1113,7 +1113,7 @@
 
   async function defier() {
     const score = partie.score;
-    const url = location.origin + (EN ? "/en" : "/") + "#jeu";
+    const url = (location.hostname.endsWith(".vercel.app") ? "https://www.poumonsnoirs.com" : location.origin) + (EN ? "/en" : "/") + "#jeu";
     const texte = t(`J'ai écrasé ${fmt(score)} points à Écrase-Clopes, grade ${grade(score)}. À toi, soldat :`, `I crushed ${fmt(score)} points at Cig Crush, rank ${grade(score)}. Your turn, soldier:`);
     if (navigator.share) {
       try { await navigator.share({ title: t("Écrase-Clopes", "Cig Crush"), text: texte, url }); return; }

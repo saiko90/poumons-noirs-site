@@ -1,7 +1,7 @@
 # Site d'Opération Poumons Noirs
 
 Site vitrine de l'appli Android Opération Poumons Noirs (EN : Operation Black Lungs), en français et en anglais.
-En ligne : https://poumons-noirs.vercel.app
+En ligne : https://poumonsnoirs.com (l'ancienne adresse poumons-noirs.vercel.app marche toujours)
 
 ## Ce qu'il y a dedans
 

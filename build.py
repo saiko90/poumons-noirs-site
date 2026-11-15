@@ -4,7 +4,7 @@ import html, json, os, re
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 SORTIE = os.path.join(ICI, "site")
-BASE = os.environ.get("PN_BASE", "https://poumons-noirs.vercel.app")
+BASE = os.environ.get("PN_BASE", "https://www.poumonsnoirs.com")
 MOTIFS = ["lundi", "cachette", "vape", "craque", "pause", "prix", "bravo"]
 
 e = html.escape
@@ -266,7 +266,7 @@ def script_textes(d, avec_motifs=False):
     js = dict(d["js"])
     if avec_motifs:
         js["motifs"] = d["motifs"]
-    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=2" defer></script>'
+    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=3" defer></script>'
 
 
 def page_accueil(l, avec_jeu):
@@ -291,7 +291,7 @@ def page_accueil(l, avec_jeu):
     noms_videos = ["sergent-toi-oui-toi", "sergent-debout", "sergent-debout-pause-clope"]
     videos_sergent = "\n".join(
         f'<figure class="video"><video controls preload="none" playsinline poster="/video/{f}.jpg"><source src="/video/{f}.mp4" type="video/mp4"></video><figcaption>{e(t)}</figcaption></figure>'
-        for f, t in zip(noms_videos, d["videosSergent"]))
+        for f, t in zip([n + "-v2" for n in noms_videos], d["videosSergent"]))
     jeu = ""
     if avec_jeu:
         jeu = f"""
@@ -432,7 +432,7 @@ def page_accueil(l, avec_jeu):
 </main>
 {pied(d)}
 {script_textes(d)}
-{'<script src="/jeu.js?v=1" defer></script>' if avec_jeu else ''}
+{'<script src="/jeu.js?v=2" defer></script>' if avec_jeu else ''}
 </body>
 </html>
 """
