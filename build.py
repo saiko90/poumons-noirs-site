@@ -69,7 +69,7 @@ TXT = {
         "envoyerWa": "Envoyer sur WhatsApp", "copierLien": "Copier le lien", "partager": "Partager",
         "jeuTitre": "Écrase-Clopes", "jeuSansJs": "Le jeu a besoin de JavaScript pour tourner.", "jeuChapeau": "Le mini-jeu du SOS envie. Aligne trois clopes pour les écraser, enchaîne les combos, tiens trois minutes. Joue ici, puis bats ton score dans l'appli.",
         "mediasTitre": "Médias", "mediasChapeau": "Vidéos, captures et dossier presse. Journalistes : contact@swissdigitalstudio.ch",
-        "video1": "Lève-toi", "video2": "Ton sergent de poche",
+        "video1": "Lève-toi", "video2": "Ton sergent de poche", "videosSergent": ["Toi, oui, toi", "Debout, soldat", "Encore en pause clope ?"],
         "presseTexte": "Le dossier presse contient l'icône, les bannières, les captures en français et en anglais, les visuels du Sergent (avec détourages), des textes de présentation et des extraits de sa voix.",
         "presseBouton": "Télécharger le dossier presse (ZIP, 10 Mo)",
         "faqTitre": "Questions des recrues",
@@ -152,7 +152,7 @@ TXT = {
         "envoyerWa": "Send on WhatsApp", "copierLien": "Copy the link", "partager": "Share",
         "jeuTitre": "Cig Crush", "jeuSansJs": "The game needs JavaScript to run.", "jeuChapeau": "The craving SOS mini-game. Line up three cigarettes to crush them, chain combos, hold out for three minutes. Play here, then beat your score in the app.",
         "mediasTitre": "Media", "mediasChapeau": "Videos, screenshots and press kit. Journalists: contact@swissdigitalstudio.ch",
-        "video1": "Get up (in French)", "video2": "Your pocket sergeant (in French)",
+        "video1": "Get up (in French)", "video2": "Your pocket sergeant (in French)", "videosSergent": ["You, yes, you (in French)", "Up, soldier (in French)", "Another smoke break? (in French)"],
         "presseTexte": "The press kit contains the icon, banners, screenshots in English and French, the Sergeant's artwork (with cut-outs), descriptions and clips of his voice.",
         "presseBouton": "Download the press kit (ZIP, 10 MB)",
         "faqTitre": "Recruits' questions",
@@ -288,6 +288,10 @@ def page_accueil(l, avec_jeu):
         for m in MOTIFS)
     captures = "".join(f'<img src="/img/{l}/capture_{i}.webp" alt="{e(d["captures"][i-1])}" width="540" height="960" loading="lazy" role="listitem">' for i in range(1, 8))
     faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(r)}</p></details>" for q, r in d["faq"])
+    noms_videos = ["sergent-toi-oui-toi", "sergent-debout", "sergent-debout-pause-clope"]
+    videos_sergent = "\n".join(
+        f'<figure class="video"><video controls preload="none" playsinline poster="/video/{f}.jpg"><source src="/video/{f}.mp4" type="video/mp4"></video><figcaption>{e(t)}</figcaption></figure>'
+        for f, t in zip(noms_videos, d["videosSergent"]))
     jeu = ""
     if avec_jeu:
         jeu = f"""
@@ -410,6 +414,7 @@ def page_accueil(l, avec_jeu):
 <div class="cadre">
 <div class="section-tete"><h2 id="medias-titre">{e(d['mediasTitre'])}</h2><p>{e(d['mediasChapeau'])}</p></div>
 <div class="videos">
+{videos_sergent}
 <figure class="video"><video controls preload="none" playsinline poster="/video/leve-toi.jpg"><source src="/video/leve-toi.mp4" type="video/mp4"></video><figcaption>{e(d['video1'])}</figcaption></figure>
 <figure class="video"><video controls preload="none" playsinline poster="/video/sergent-de-poche.jpg"><source src="/video/sergent-de-poche.mp4" type="video/mp4"></video><figcaption>{e(d['video2'])}</figcaption></figure>
 </div>
