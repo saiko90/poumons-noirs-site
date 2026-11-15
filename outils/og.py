@@ -25,7 +25,7 @@ h1 {{ font: 700 {taille}px/.9 S; text-transform: uppercase; text-shadow: 0 4px 2
 .marque {{ position: absolute; left: 60px; bottom: 44px; display: flex; align-items: center; gap: 14px; font: 700 26px/1 S; text-transform: uppercase; }}
 .marque img {{ width: 48px; height: 48px; border-radius: 11px; }}
 </style></head><body>
-<img class="photo" src="{H}/img/sergent/accueil-2330.webp">
+<img class="photo" src="{H}/img/sergent/accueil-2330-v2.webp">
 <div class="texte">{contenu}</div>
 <div class="marque"><img src="{H}/img/icone-192.png"><span>{marque}</span></div>
 </body></html>"""
