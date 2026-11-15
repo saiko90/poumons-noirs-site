@@ -1,0 +1,92 @@
+[
+ {
+  "id": "envoi_lundi",
+  "file": "envoi_lundi.mp3",
+  "text": "[shouting] YOU! Yes, you! I hear you're quitting \"on Monday\"? [sarcastic] Which Monday, soldier? [commanding] We start TODAY. Someone who cares about you sent me. Drop that cigarette!",
+  "chars": 183
+ },
+ {
+  "id": "envoi_cachette",
+  "file": "envoi_cachette.mp3",
+  "text": "[shouting] SO WE'RE SMOKING IN SECRET NOW? [whispering] I can smell it from here, soldier. [shouting] You're not fooling anyone! Someone who cares about you sent me. Dismissed!",
+  "chars": 176
+ },
+ {
+  "id": "envoi_vape",
+  "file": "envoi_vape.mp3",
+  "text": "[shouting] PUT AWAY THAT SMOKING USB STICK! [sarcastic] A vape in your hand all day long, and you call that quitting? [commanding] Someone who cares about you sent me. We start. NOW.",
+  "chars": 182
+ },
+ {
+  "id": "envoi_craque",
+  "file": "envoi_craque.mp3",
+  "text": "[shouting] YOU SLIPPED? [calm] Fine. It happens to the best. [shouting] But a soldier who falls GETS BACK UP! Someone who cares about you sent me. On your feet, we go again!",
+  "chars": 173
+ },
+ {
+  "id": "envoi_pause",
+  "file": "envoi_pause.mp3",
+  "text": "[shouting] ANOTHER SMOKE BREAK? [sarcastic] Do you work between cigarettes, or is it the other way around? [commanding] Someone who cares about you sent me. Breaks are over. Attention!",
+  "chars": 184
+ },
+ {
+  "id": "envoi_prix",
+  "file": "envoi_prix.mp3",
+  "text": "[shouting] CIGARETTES TOO EXPENSIVE? [sarcastic] Then stop buying them, genius! [commanding] Someone who cares about you sent me. From now on, we save!",
+  "chars": 151
+ },
+ {
+  "id": "envoi_bravo",
+  "file": "envoi_bravo.mp3",
+  "text": "[shouting] ATTENTION! [proud] I hear you quit, soldier. [softly] I'm proud of you. [shouting] But you do NOT lower your guard! Someone who cares about you sent me. Keep going!",
+  "chars": 175
+ },
+ {
+  "id": "calc_1",
+  "file": "calc_1.mp3",
+  "text": "[shouting] You already burned all that? [commanding] And that's ONLY the beginning, soldier. Quit while it doesn't cost you a car yet!",
+  "chars": 134
+ },
+ {
+  "id": "calc_2",
+  "file": "calc_2.mp3",
+  "text": "[shouting] ALL THAT UP IN SMOKE? [disgusted] A vacation, a motorbike, a savings account... And you picked black lungs. BRAVO.",
+  "chars": 125
+ },
+ {
+  "id": "calc_3",
+  "file": "calc_3.mp3",
+  "text": "[shouting] A CAR! You smoked A CAR, soldier! [commanding] It ends today. Not tomorrow. TODAY!",
+  "chars": 93
+ },
+ {
+  "id": "calc_4",
+  "file": "calc_4.mp3",
+  "text": "[shouting] A HOUSE down payment. You smoked a house down payment! [quietly] I... I'm speechless. [shouting] NO, I AM NOT SPEECHLESS! QUIT!",
+  "chars": 138
+ },
+ {
+  "id": "accueil_1",
+  "file": "accueil_1.mp3",
+  "text": "[shouting] YOU! YES, YOU, BEHIND THAT SCREEN! You came looking for help? You're gonna get it. ATTENTION!",
+  "chars": 104
+ },
+ {
+  "id": "accueil_2",
+  "file": "accueil_2.mp3",
+  "text": "[commanding] Welcome to Operation Black Lungs. No hugs here, no excuses. [shouting] Just you, me, and your LAST cigarette!",
+  "chars": 122
+ },
+ {
+  "id": "accueil_3",
+  "file": "accueil_3.mp3",
+  "text": "[commanding] Three hundred sixty-five days. One order a day. [shouting] And in the end, YOU'RE the boss, not the cigarette. DISMISSED!",
+  "chars": 134
+ },
+ {
+  "id": "recrue",
+  "file": "recrue.mp3",
+  "text": "[shouting] RECRUIT REGISTERED! [commanding] On D-Day, I'm coming for you. Get ready, soldier!",
+  "chars": 93
+ }
+]

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /ordre
+Disallow: /order
+Sitemap: https://poumons-noirs.vercel.app/sitemap.xml

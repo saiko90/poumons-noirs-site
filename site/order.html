@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Sergeant has orders for you</title>
+<meta name="description" content="Someone who cares about you sent the Sergeant. Open and listen.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://poumons-noirs.vercel.app/order">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Operation Black Lungs">
+<meta property="og:title" content="The Sergeant has orders for you">
+<meta property="og:description" content="Someone who cares about you sent the Sergeant. Open and listen.">
+<meta property="og:image" content="https://poumons-noirs.vercel.app/img/og-en.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://poumons-noirs.vercel.app/order">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070707">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/stardos-stencil-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/courier-prime-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=1">
+
+</head>
+<body data-page="recu">
+<header class="barre"><div class="cadre">
+<a class="marque" href="/en"><img src="/img/icone-192.png" alt="" width="38" height="38"><span>Black Lungs</span></a>
+<nav aria-label="Navigation"><a href="/" lang="fr" hreflang="fr">Français</a></nav>
+</div></header>
+<main class="recu">
+<div class="cadre">
+<article class="feuille" aria-labelledby="recu-nom">
+<div class="feuille-tete"><span class="feuille-titre">Mission order</span><span class="feuille-ref">Ref. BL-07</span></div>
+<p>For the attention of</p>
+<h1 class="recu-nom" id="recu-nom">Soldier.</h1>
+<p>Someone who cares about you sent the Sergeant. Listen to your order until the end.</p>
+<dl><dt>Reason</dt><dd id="recu-motif"></dd></dl>
+<div class="feuille-actions">
+<button class="tampon" type="button" id="recu-ecouter" aria-pressed="false"><span><span class="tampon-icone" aria-hidden="true">&#9654;</span>Hear the order</span></button>
+<p>Turn the sound up, soldier.</p>
+</div>
+<div class="recu-suite" id="recu-suite" hidden>
+<p><strong>Now what?</strong> Sign your mobilization order: you&#x27;ll get an email the day the app launches.</p>
+<form class="signature" data-recrue="ordre" novalidate>
+<div class="signature-ligne">
+<label class="champ"><span class="champ-label">Recruit&#x27;s signature (your email)</span><input type="email" name="email" autocomplete="email" placeholder="you@email.com" required></label>
+<button class="bouton" type="submit">Sign the order</button>
+</div>
+<p class="message" role="status" aria-live="polite"></p>
+<p class="mini">You get one single email, on launch day. Your address is deleted after 6 months.</p>
+</form>
+<div class="recu-liens"><a href="/en#mission-section">Send the Sergeant to someone else</a><a href="/en">Discover the app</a></div>
+</div>
+<div class="empreinte" aria-hidden="true"></div>
+</article>
+</div>
+</main>
+<footer class="pied"><div class="cadre">
+<p>Operation Black Lungs is an app by Swiss Digital Studio, Krystel Fiorbianco, Valais, Switzerland.</p>
+<nav aria-label="Privacy"><a href="/privacy#en">Privacy</a><a href="/suppression#en">Delete my data</a><a href="mailto:contact@swissdigitalstudio.ch">contact@swissdigitalstudio.ch</a><a href="/" lang="fr">Français</a></nav>
+</div></footer>
+<script id="textes" type="application/json">{"erreurEmail": "That address doesn't work. Check your email.", "erreurReseau": "No connection. Try again in a moment.", "recrueOk": "Recruit registered. On D-Day, the Sergeant is coming for you.", "empreinteSigne": "Enlisted", "empreinteRecu": "Order received", "copie": "Link copied.", "copieManuelle": "Copy the link above by hand.", "waNom": "{n}, the Sergeant has orders for you:", "waSans": "The Sergeant has orders for you:", "partageTitre": "Orders from the Sergeant", "soldat": "Soldier", "motifs": {"lundi": "Has been quitting “on Monday” for years", "cachette": "Smokes in secret", "vape": "Vapes all day long", "craque": "Just slipped", "pause": "Lives on smoke breaks", "prix": "Complains about cigarette prices", "bravo": "Quit: to be congratulated"}}</script>
+<script src="/site.js?v=1" defer></script>
+</body>
+</html>

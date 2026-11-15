@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Le Sergent a un ordre de mission pour toi</title>
+<meta name="description" content="Quelqu&#x27;un qui tient à toi t&#x27;envoie le Sergent. Ouvre et écoute.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://poumons-noirs.vercel.app/ordre">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Opération Poumons Noirs">
+<meta property="og:title" content="Le Sergent a un ordre de mission pour toi">
+<meta property="og:description" content="Quelqu&#x27;un qui tient à toi t&#x27;envoie le Sergent. Ouvre et écoute.">
+<meta property="og:image" content="https://poumons-noirs.vercel.app/img/og-fr.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:url" content="https://poumons-noirs.vercel.app/ordre">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#070707">
+<link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/stardos-stencil-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/courier-prime-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/style.css?v=1">
+
+</head>
+<body data-page="recu">
+<header class="barre"><div class="cadre">
+<a class="marque" href="/"><img src="/img/icone-192.png" alt="" width="38" height="38"><span>Poumons Noirs</span></a>
+<nav aria-label="Navigation"><a href="/en" lang="en" hreflang="en">English</a></nav>
+</div></header>
+<main class="recu">
+<div class="cadre">
+<article class="feuille" aria-labelledby="recu-nom">
+<div class="feuille-tete"><span class="feuille-titre">Ordre de mission</span><span class="feuille-ref">Réf. PN-07</span></div>
+<p>À l&#x27;attention de</p>
+<h1 class="recu-nom" id="recu-nom">Soldat.</h1>
+<p>Quelqu&#x27;un qui tient à toi a envoyé le Sergent. Écoute ton ordre jusqu&#x27;au bout.</p>
+<dl><dt>Motif</dt><dd id="recu-motif"></dd></dl>
+<div class="feuille-actions">
+<button class="tampon" type="button" id="recu-ecouter" aria-pressed="false"><span><span class="tampon-icone" aria-hidden="true">&#9654;</span>Écouter l&#x27;ordre</span></button>
+<p>Monte le son, soldat.</p>
+</div>
+<div class="recu-suite" id="recu-suite" hidden>
+<p><strong>Et maintenant ?</strong> Signe ton ordre de mobilisation : tu reçois un e-mail le jour où l&#x27;appli sort.</p>
+<form class="signature" data-recrue="ordre" novalidate>
+<div class="signature-ligne">
+<label class="champ"><span class="champ-label">Signature de la recrue (ton e-mail)</span><input type="email" name="email" autocomplete="email" placeholder="ton@email.ch" required></label>
+<button class="bouton" type="submit">Signer l&#x27;ordre</button>
+</div>
+<p class="message" role="status" aria-live="polite"></p>
+<p class="mini">Tu reçois un seul e-mail, le jour de la sortie. Ton adresse est effacée au bout de 6 mois.</p>
+</form>
+<div class="recu-liens"><a href="/#mission-section">Envoyer le Sergent à quelqu&#x27;un d&#x27;autre</a><a href="/">Découvrir l&#x27;appli</a></div>
+</div>
+<div class="empreinte" aria-hidden="true"></div>
+</article>
+</div>
+</main>
+<footer class="pied"><div class="cadre">
+<p>Opération Poumons Noirs est une appli de Swiss Digital Studio, Krystel Fiorbianco, Valais, Suisse.</p>
+<nav aria-label="Confidentialité"><a href="/privacy">Confidentialité</a><a href="/suppression">Supprimer mes données</a><a href="mailto:contact@swissdigitalstudio.ch">contact@swissdigitalstudio.ch</a><a href="/en" lang="en">English</a></nav>
+</div></footer>
+<script id="textes" type="application/json">{"erreurEmail": "Cette adresse ne passe pas. Vérifie ton e-mail.", "erreurReseau": "Pas de réseau. Réessaie dans un instant.", "recrueOk": "Recrue enregistrée. Le jour J, le Sergent vient te chercher.", "empreinteSigne": "Mobilisé", "empreinteRecu": "Ordre reçu", "copie": "Lien copié.", "copieManuelle": "Copie le lien ci-dessus à la main.", "waNom": "{n}, le Sergent a un ordre de mission pour toi :", "waSans": "Le Sergent a un ordre de mission pour toi :", "partageTitre": "Un ordre du Sergent", "soldat": "Soldat", "motifs": {"lundi": "Arrête « lundi » depuis des années", "cachette": "Fume en cachette", "vape": "Vapote toute la journée", "craque": "Vient de craquer", "pause": "Vit en pause clope", "prix": "Se plaint du prix des clopes", "bravo": "A arrêté : à féliciter"}}</script>
+<script src="/site.js?v=1" defer></script>
+</body>
+</html>

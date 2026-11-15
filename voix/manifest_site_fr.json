@@ -1,0 +1,92 @@
+[
+ {
+  "id": "envoi_lundi",
+  "file": "envoi_lundi.mp3",
+  "text": "[shouting] TOI ! Oui, toi ! Paraît que t'arrêtes « lundi » ? [sarcastic] Quel lundi, soldat ? [commanding] On commence AUJOURD'HUI. Quelqu'un qui tient à toi m'envoie. Pose cette clope !",
+  "chars": 186
+ },
+ {
+  "id": "envoi_cachette",
+  "file": "envoi_cachette.mp3",
+  "text": "[shouting] ALORS COMME ÇA, ON FUME EN CACHETTE ? [whispering] Je sens l'odeur d'ici, soldat. [shouting] Tu caches rien à personne ! Quelqu'un qui tient à toi m'envoie. Rompez !",
+  "chars": 176
+ },
+ {
+  "id": "envoi_vape",
+  "file": "envoi_vape.mp3",
+  "text": "[shouting] RANGE-MOI CETTE CLÉ USB À FUMÉE ! [sarcastic] Une vapoteuse dans la main toute la journée, t'appelles ça arrêter ? [commanding] Quelqu'un qui tient à toi m'envoie. On s'y met. MAINTENANT.",
+  "chars": 198
+ },
+ {
+  "id": "envoi_craque",
+  "file": "envoi_craque.mp3",
+  "text": "[shouting] T'AS CRAQUÉ ? [calm] Bon. Ça arrive aux meilleurs. [shouting] Mais un soldat qui tombe, ça se RELÈVE ! Quelqu'un qui tient à toi m'envoie. Debout, et on repart !",
+  "chars": 172
+ },
+ {
+  "id": "envoi_pause",
+  "file": "envoi_pause.mp3",
+  "text": "[shouting] ENCORE EN PAUSE CLOPE ? [sarcastic] Tu bosses entre deux cigarettes, ou c'est l'inverse ? [commanding] Quelqu'un qui tient à toi m'envoie. Fini les pauses. Garde à vous !",
+  "chars": 181
+ },
+ {
+  "id": "envoi_prix",
+  "file": "envoi_prix.mp3",
+  "text": "[shouting] TROP CHÈRES, LES CLOPES ? [sarcastic] Alors arrête de les acheter, génie ! [commanding] Quelqu'un qui tient à toi m'envoie. À partir de maintenant, on économise !",
+  "chars": 173
+ },
+ {
+  "id": "envoi_bravo",
+  "file": "envoi_bravo.mp3",
+  "text": "[shouting] ATTENTION ! [proud] Paraît que t'as arrêté, soldat. [softly] Je suis fier de toi. [shouting] Mais tu baisses pas la garde ! Quelqu'un qui tient à toi m'envoie. Continue !",
+  "chars": 181
+ },
+ {
+  "id": "calc_1",
+  "file": "calc_1.mp3",
+  "text": "[shouting] T'as déjà cramé tout ça ? [commanding] Et c'est QUE le début, soldat. Arrête tant que ça coûte pas encore une voiture !",
+  "chars": 130
+ },
+ {
+  "id": "calc_2",
+  "file": "calc_2.mp3",
+  "text": "[shouting] TOUT ÇA EN FUMÉE ? [disgusted] Des vacances, une moto, un compte épargne... Et toi, t'as choisi des poumons noirs. BRAVO.",
+  "chars": 132
+ },
+ {
+  "id": "calc_3",
+  "file": "calc_3.mp3",
+  "text": "[shouting] UNE VOITURE ! T'as fumé UNE VOITURE, soldat ! [commanding] Ça s'arrête aujourd'hui. Pas demain. AUJOURD'HUI !",
+  "chars": 120
+ },
+ {
+  "id": "calc_4",
+  "file": "calc_4.mp3",
+  "text": "[shouting] Un acompte de MAISON. T'as fumé un acompte de maison ! [quietly] Je... je suis sans voix. [shouting] NON, JE SUIS PAS SANS VOIX ! ARRÊTE !",
+  "chars": 149
+ },
+ {
+  "id": "accueil_1",
+  "file": "accueil_1.mp3",
+  "text": "[shouting] TOI ! OUI, TOI, DERRIÈRE TON ÉCRAN ! T'es venu chercher de l'aide ? Tu vas en avoir. GARDE À VOUS !",
+  "chars": 110
+ },
+ {
+  "id": "accueil_2",
+  "file": "accueil_2.mp3",
+  "text": "[commanding] Bienvenue dans l'Opération Poumons Noirs. Ici, pas de câlins, pas d'excuses. [shouting] Juste toi, moi, et ta DERNIÈRE clope !",
+  "chars": 139
+ },
+ {
+  "id": "accueil_3",
+  "file": "accueil_3.mp3",
+  "text": "[commanding] Trois cent soixante-cinq jours. Un ordre par jour. [shouting] Et à la fin, c'est toi le patron, pas la clope. ROMPEZ !",
+  "chars": 131
+ },
+ {
+  "id": "recrue",
+  "file": "recrue.mp3",
+  "text": "[shouting] RECRUE ENREGISTRÉE ! [commanding] Le jour J, je viens te chercher. Prépare-toi, soldat !",
+  "chars": 99
+ }
+]
