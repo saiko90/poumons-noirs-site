@@ -281,12 +281,12 @@ def page_accueil(l, avec_jeu):
     ]
     extra = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in jsonld)
     prog = "".join(f"<li><h3>{e(t)}</h3><p>{e(p)}</p></li>" for t, p in d["prog"])
-    phones = "".join(f'<div class="telephone"><img src="/img/{l}/capture_{i}.webp" alt="{e(d["captures"][i-1])}" width="540" height="960" loading="lazy"></div>' for i in (1, 3, 5))
+    phones = "".join(f'<div class="telephone"><img src="/img/{l}/capture_{i}-v2.webp" alt="{e(d["captures"][i-1])}" width="540" height="960" loading="lazy"></div>' for i in (1, 3, 5))
     devises = "".join(f'<option value="{e(v)}">{e(t)}</option>' for v, t in d["devises"])
     motifs = "".join(
         f'<label class="motif"><input type="radio" name="motif" value="{m}"{" checked" if m == "lundi" else ""}><span class="case" aria-hidden="true"></span><span>{e(d["motifs"][m])}</span></label>'
         for m in MOTIFS)
-    captures = "".join(f'<img src="/img/{l}/capture_{i}.webp" alt="{e(d["captures"][i-1])}" width="540" height="960" loading="lazy" role="listitem">' for i in range(1, 8))
+    captures = "".join(f'<img src="/img/{l}/capture_{i}-v2.webp" alt="{e(d["captures"][i-1])}" width="540" height="960" loading="lazy" role="listitem">' for i in range(1, 8))
     faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(r)}</p></details>" for q, r in d["faq"])
     noms_videos = ["sergent-toi-oui-toi", "sergent-debout"]
     videos_sergent = "\n".join(
