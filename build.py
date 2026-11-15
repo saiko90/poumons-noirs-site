@@ -31,6 +31,9 @@ TXT = {
         "destLabel": "Destinataire", "dest": "Toi.", "objetLabel": "Objet", "objet": "Ta dernière cigarette.", "dureeLabel": "Durée", "duree": "365 jours. Pas un de moins.",
         "ordreTexte": "Chaque matin, le Sergent te donne ton ordre du jour. Chaque envie, tu l'écrases. Tu ne discutes pas.",
         "ecouterOrdre": "Écouter l'ordre", "ecouterAide": "Monte le son. Il ne parle pas, il aboie.",
+        "ordreLigne": "Destinataire : toi. Objet : ta dernière cigarette. Durée : 365 jours, pas un de moins.",
+        "barreCta": "Signer l'ordre", "barreCtaCourt": "Signer", "langueCourt": "EN",
+        "altSergent": "Le Sergent Noclope te pointe du doigt en hurlant.", "altEcrase": "Le Sergent écrase une cigarette dans son poing.",
         "signatureLabel": "Signature de la recrue (ton e-mail)", "emailPlaceholder": "ton@email.ch", "signer": "Signer l'ordre",
         "signatureMini": "Tu reçois un seul e-mail, le jour de la sortie. Ton adresse est effacée au bout de 6 mois.",
         "progTitre": "Le programme", "progChapeau": "Douze mois de discipline, dans ta poche.",
@@ -67,8 +70,8 @@ TXT = {
         "jeuTitre": "Écrase-Clopes", "jeuSansJs": "Le jeu a besoin de JavaScript pour tourner.", "jeuChapeau": "Le mini-jeu du SOS envie. Aligne trois clopes pour les écraser, enchaîne les combos, tiens trois minutes. Joue ici, puis bats ton score dans l'appli.",
         "mediasTitre": "Médias", "mediasChapeau": "Vidéos, captures et dossier presse. Journalistes : contact@swissdigitalstudio.ch",
         "video1": "Lève-toi", "video2": "Ton sergent de poche",
-        "presseTexte": "Le dossier presse contient l'icône, les bannières, les captures en français et en anglais, des textes de présentation et des extraits audio du Sergent.",
-        "presseBouton": "Télécharger le dossier presse (ZIP)",
+        "presseTexte": "Le dossier presse contient l'icône, les bannières, les captures en français et en anglais, les visuels du Sergent (avec détourages), des textes de présentation et des extraits de sa voix.",
+        "presseBouton": "Télécharger le dossier presse (ZIP, 10 Mo)",
         "faqTitre": "Questions des recrues",
         "faq": [
             ("C'est quoi, Opération Poumons Noirs ?", "Une appli Android pour arrêter de fumer ou de vapoter. Un sergent instructeur te donne un ordre vocal par jour pendant 365 jours, t'aide à tenir face aux envies et suit tes progrès : jours tenus, argent économisé, trophées."),
@@ -111,6 +114,9 @@ TXT = {
         "destLabel": "To", "dest": "You.", "objetLabel": "Subject", "objet": "Your last cigarette.", "dureeLabel": "Duration", "duree": "365 days. Not one less.",
         "ordreTexte": "Every morning, the Sergeant gives you your order of the day. Every craving, you crush it. No discussion.",
         "ecouterOrdre": "Hear the order", "ecouterAide": "Turn the sound up. He doesn't talk, he barks.",
+        "ordreLigne": "To: you. Subject: your last cigarette. Duration: 365 days, not one less.",
+        "barreCta": "Sign up", "barreCtaCourt": "Sign up", "langueCourt": "FR",
+        "altSergent": "Sergeant Noclope points at you, yelling.", "altEcrase": "The Sergeant crushes a cigarette in his fist.",
         "signatureLabel": "Recruit's signature (your email)", "emailPlaceholder": "you@email.com", "signer": "Sign the order",
         "signatureMini": "You get one single email, on launch day. Your address is deleted after 6 months.",
         "progTitre": "The program", "progChapeau": "Twelve months of discipline, in your pocket.",
@@ -147,8 +153,8 @@ TXT = {
         "jeuTitre": "Cig Crush", "jeuSansJs": "The game needs JavaScript to run.", "jeuChapeau": "The craving SOS mini-game. Line up three cigarettes to crush them, chain combos, hold out for three minutes. Play here, then beat your score in the app.",
         "mediasTitre": "Media", "mediasChapeau": "Videos, screenshots and press kit. Journalists: contact@swissdigitalstudio.ch",
         "video1": "Get up (in French)", "video2": "Your pocket sergeant (in French)",
-        "presseTexte": "The press kit contains the icon, banners, screenshots in English and French, descriptions and audio clips of the Sergeant.",
-        "presseBouton": "Download the press kit (ZIP)",
+        "presseTexte": "The press kit contains the icon, banners, screenshots in English and French, the Sergeant's artwork (with cut-outs), descriptions and clips of his voice.",
+        "presseBouton": "Download the press kit (ZIP, 10 MB)",
         "faqTitre": "Recruits' questions",
         "faq": [
             ("What is Operation Black Lungs?", "An Android app to quit smoking or vaping. A drill sergeant gives you one voiced order a day for 365 days, helps you hold out against cravings and tracks your progress: days held, money saved, trophies."),
@@ -195,7 +201,8 @@ def appliquer_typo(d):
 TXT["fr"] = appliquer_typo(TXT["fr"])
 
 
-def tete(d, l, titre, desc, chemin, noindex=False, extra=""):
+def tete(d, l, titre, desc, chemin, noindex=False, extra="", og=None):
+    og = og or f"og-{l}"
     autres = f'<link rel="alternate" hreflang="fr" href="{BASE}/"><link rel="alternate" hreflang="en" href="{BASE}/en"><link rel="alternate" hreflang="x-default" href="{BASE}/">' if not noindex else ""
     robots = '<meta name="robots" content="noindex">' if noindex else ""
     return f"""<!doctype html>
@@ -212,7 +219,7 @@ def tete(d, l, titre, desc, chemin, noindex=False, extra=""):
 <meta property="og:site_name" content="{e('Opération Poumons Noirs' if l == 'fr' else 'Operation Black Lungs')}">
 <meta property="og:title" content="{e(titre)}">
 <meta property="og:description" content="{e(desc)}">
-<meta property="og:image" content="{BASE}/img/og-{l}.jpg">
+<meta property="og:image" content="{BASE}/img/{og}.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:url" content="{BASE}{chemin}">
 <meta property="og:locale" content="{d['locale']}">
@@ -222,7 +229,7 @@ def tete(d, l, titre, desc, chemin, noindex=False, extra=""):
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/stardos-stencil-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/courier-prime-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=1">
+<link rel="stylesheet" href="/style.css?v=2">
 {extra}
 </head>"""
 
@@ -233,7 +240,7 @@ def barre(d, l, avec_sections=True):
         sections = f"""<div class="liens-sections"><a href="#programme">{e(d['navProgramme'])}</a><a href="#pertes-section">{e(d['navCalcul'])}</a><a href="#mission-section">{e(d['navMission'])}</a><a href="#medias">{e(d['navMedias'])}</a></div>"""
     return f"""<header class="barre"><div class="cadre">
 <a class="marque" href="{d['chemin']}"><img src="/img/icone-192.png" alt="" width="38" height="38"><span>{e(d['marque'])}</span></a>
-<nav aria-label="{e(d['navLabel'])}">{sections}<a href="{d['autreChemin']}" lang="{d['autre']}" hreflang="{d['autre']}">{e(d['autreLangue'])}</a></nav>
+<nav aria-label="{e(d['navLabel'])}">{sections}<a class="langue" href="{d['autreChemin']}" lang="{d['autre']}" hreflang="{d['autre']}" aria-label="{e(d['autreLangue'])}"><span class="langue-long" aria-hidden="true">{e(d['autreLangue'])}</span><span class="langue-court" aria-hidden="true">{d['langueCourt']}</span></a><a class="bouton bouton-barre" href="{'' if avec_sections else d['chemin']}#signer" aria-label="{e(d['barreCta'])}"><span class="cta-long" aria-hidden="true">{e(d['barreCta'])}</span><span class="cta-court" aria-hidden="true">{e(d['barreCtaCourt'])}</span></a></nav>
 </div></header>"""
 
 
@@ -259,7 +266,7 @@ def script_textes(d, avec_motifs=False):
     js = dict(d["js"])
     if avec_motifs:
         js["motifs"] = d["motifs"]
-    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=1" defer></script>'
+    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=2" defer></script>'
 
 
 def page_accueil(l, avec_jeu):
@@ -286,7 +293,10 @@ def page_accueil(l, avec_jeu):
         jeu = f"""
 <section class="section sombre" id="jeu" aria-labelledby="jeu-titre">
 <div class="cadre jeu-grille">
+<div class="jeu-gauche">
 <div class="section-tete"><h2 id="jeu-titre">{e(d['jeuTitre'])}</h2><p>{e(d['jeuChapeau'])}</p></div>
+<img class="jeu-sergent" src="/img/sergent/ecrase.webp" alt="{e(d['altEcrase'])}" width="600" height="845" loading="lazy">
+</div>
 <div id="ecrase-clopes" class="jeu" data-lang="{l}"><p class="jeu-aide">{e(d['jeuSansJs'])}</p></div>
 </div>
 </section>"""
@@ -298,20 +308,19 @@ def page_accueil(l, avec_jeu):
 {barre(d, l)}
 <main>
 <section class="ouverture" aria-labelledby="titre">
+<picture class="ouverture-photo">
+<source media="(max-width: 1199px)" srcset="/img/sergent/accueil-mobile.webp" type="image/webp">
+<img src="/img/sergent/accueil-1400.webp" srcset="/img/sergent/accueil-1400.webp 1400w, /img/sergent/accueil-2330.webp 2330w" sizes="(min-width: 1200px) 1500px, 100vw" alt="{e(d['altSergent'])}" width="2330" height="1438" fetchpriority="high">
+</picture>
 <div class="cadre ouverture-grille">
-<div>
+<div class="ouverture-texte">
 <h1 id="titre">{e(d['h1'])}</h1>
 <p class="chapeau">{e(d['chapeau'])}</p>
 <p class="statut">{e(d['statut'])}</p>
 </div>
 <article class="feuille feuille-penchee" id="signer" aria-labelledby="ordre-titre">
 <div class="feuille-tete"><span class="feuille-titre" id="ordre-titre">{e(d['ordreTitre'])}</span><span class="feuille-ref">{e(d['ordreRef'])}</span></div>
-<dl>
-<dt>{e(d['destLabel'])}</dt><dd>{e(d['dest'])}</dd>
-<dt>{e(d['objetLabel'])}</dt><dd>{e(d['objet'])}</dd>
-<dt>{e(d['dureeLabel'])}</dt><dd>{e(d['duree'])}</dd>
-</dl>
-<p>{e(d['ordreTexte'])}</p>
+<p class="feuille-ligne">{e(d['ordreLigne'])}</p>
 <div class="feuille-actions">
 <button class="tampon" type="button" data-tampon="accueil_1,accueil_2,accueil_3" data-empreinte="{e(d['js']['empreinteRecu'])}"><span><span class="tampon-icone" aria-hidden="true">&#9654;</span>{e(d['ecouterOrdre'])}</span></button>
 <p>{e(d['ecouterAide'])}</p>
@@ -358,7 +367,10 @@ def page_accueil(l, avec_jeu):
 <li>{e(d['clopesFumees'])} <strong data-r="clopes"></strong></li>
 <li>{e(d['boutABout'])} <strong data-r="km"></strong></li>
 </ul>
-<div class="reaction"><button class="tampon tampon-petit" type="button" id="pertes-rejouer"><span>{e(d['reecouter'])}</span></button><span>{e(d['reactionTexte'])}</span></div>
+<div class="reaction">
+<img class="reaction-visage" id="pertes-visage" src="/img/sergent/sourire-en-coin.webp" alt="" width="303" height="375" loading="lazy">
+<div class="reaction-texte"><p>{e(d['reactionTexte'])}</p><button class="tampon tampon-petit" type="button" id="pertes-rejouer"><span>{e(d['reecouter'])}</span></button></div>
+</div>
 </div>
 </div>
 </div>
@@ -423,11 +435,13 @@ def page_accueil(l, avec_jeu):
 
 def page_recu(l):
     d = TXT[l]
-    return f"""{tete(d, l, d['recuTitle'], d['recuDesc'], d['recuChemin'], noindex=True)}
+    return f"""{tete(d, l, d['recuTitle'], d['recuDesc'], d['recuChemin'], noindex=True, og=f"og-ordre-{l}", extra='<link rel="preload" as="image" href="/img/sergent/crie.webp">')}
 <body data-page="recu">
 {barre(d, l, avec_sections=False)}
 <main class="recu">
 <div class="cadre">
+<div class="recu-dossier">
+<img class="recu-sergent" id="recu-visage" src="/img/sergent/pointe.webp" alt="" width="384" height="373">
 <article class="feuille" aria-labelledby="recu-nom">
 <div class="feuille-tete"><span class="feuille-titre">{e(d['recuTitre'])}</span><span class="feuille-ref">{e(d['recuRef'])}</span></div>
 <p>{e(d['recuPour'])}</p>
@@ -445,6 +459,7 @@ def page_recu(l):
 </div>
 <div class="empreinte" aria-hidden="true"></div>
 </article>
+</div>
 </div>
 </main>
 {pied(d)}

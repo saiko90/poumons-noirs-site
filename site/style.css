@@ -81,19 +81,37 @@ p { margin: 0 0 1em; }
 .sombre .section-tete p { color: #cfc9ba; }
 
 /* ---------- Ouverture ---------- */
-.ouverture {
-  position: relative; overflow: hidden;
-  background:
-    radial-gradient(ellipse 70% 55% at 12% 108%, rgba(193, 18, 31, .45), transparent 70%),
-    radial-gradient(ellipse 40% 35% at 88% 0%, rgba(154, 163, 106, .10), transparent 70%),
-    var(--noir);
-  padding-top: 7.5rem; padding-bottom: clamp(4rem, 8vw, 6.5rem);
+.ouverture { position: relative; overflow: hidden; background: var(--noir); padding-top: 7.5rem; padding-bottom: clamp(4rem, 7vw, 6rem); }
+.ouverture::before { content: ""; position: absolute; inset: 0 0 auto; height: 9rem; z-index: 1; pointer-events: none; background: linear-gradient(rgba(7, 7, 7, .8), rgba(7, 7, 7, 0)); }
+.ouverture-photo { position: absolute; top: 0; right: 0; margin: 0; }
+.ouverture-photo img {
+  height: min(100vh, 960px); width: auto; max-width: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 30%), linear-gradient(to top, transparent, #000 24%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 30%), linear-gradient(to top, transparent, #000 24%);
+  mask-composite: intersect;
 }
-.ouverture-grille { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
-.ouverture h1 { max-width: 9ch; }
-.chapeau { font-size: 1.2rem; max-width: 34rem; margin-top: 1.6rem; color: #d9d3c3; }
-.statut { display: inline-block; margin-top: .6rem; padding: .35rem .7rem; border: 1px dashed var(--kaki); color: var(--kaki); font-size: .95rem; }
-@media (max-width: 900px) { .ouverture-grille { grid-template-columns: 1fr; } }
+.ouverture-grille { position: relative; z-index: 2; }
+.ouverture-grille > * { max-width: 31rem; }
+.ouverture h1 { font-size: clamp(3rem, 5.4vw, 5.3rem); max-width: 10ch; text-shadow: 0 4px 30px rgba(0, 0, 0, .6); }
+.chapeau { font-size: 1.15rem; margin-top: 1.4rem; color: #d9d3c3; text-shadow: 0 2px 18px rgba(0, 0, 0, .8); }
+.statut { display: inline-block; margin: .2rem 0 2.2rem; padding: .35rem .7rem; border: 1px dashed var(--kaki); color: var(--kaki); font-size: .95rem; background: rgba(7, 7, 7, .55); }
+.feuille-ligne { margin: 0 0 .4rem; font-size: .98rem; }
+.ouverture .tampon { --taille: 118px; }
+.ouverture .feuille-actions { margin: .8rem 0 1.1rem; }
+@media (max-width: 1199px) {
+  .ouverture { padding-top: 4.6rem; }
+  .ouverture::before { display: none; }
+  .ouverture-photo { position: relative; display: block; }
+  .ouverture-photo img {
+    width: 100%; height: auto; max-height: 74vh; object-fit: cover; object-position: 50% 20%;
+    -webkit-mask-image: linear-gradient(to top, transparent, #000 32%); -webkit-mask-composite: source-over;
+    mask-image: linear-gradient(to top, transparent, #000 32%); mask-composite: add;
+  }
+  .ouverture-grille { margin-top: -3.4rem; }
+  .ouverture-grille > * { max-width: 40rem; }
+  .ouverture h1 { font-size: clamp(2.7rem, 10vw, 5rem); max-width: 12ch; }
+}
 
 /* ---------- La feuille (ordre papier) ---------- */
 .feuille {
@@ -334,3 +352,33 @@ p { margin: 0 0 1em; }
   .jeu-fin-boutons .bouton { padding: .65rem .8rem; font-size: .82rem; }
   .jeu-note { font-size: .85rem; }
 }
+
+/* Bouton de la barre et langue courte */
+.barre nav .bouton-barre { padding: .55rem .9rem; font-size: .85rem; text-decoration: none; }
+.barre nav .bouton-barre:hover { text-decoration: none; }
+.langue-court, .cta-court { display: none; }
+.marque, .bouton-barre { white-space: nowrap; }
+@media (max-width: 560px) {
+  .langue-long, .cta-long { display: none; }
+  .langue-court, .cta-court { display: inline; }
+  .barre nav { gap: .9rem; }
+  .marque { font-size: 1.05rem; }
+  .marque img { width: 32px; height: 32px; }
+}
+
+/* Calculateur : le visage du Sergent */
+.reaction { display: flex; align-items: flex-end; gap: 1rem; margin-top: 1.4rem; }
+.reaction-visage { flex: none; width: 150px; height: 175px; object-fit: contain; object-position: bottom; }
+.reaction-texte { display: flex; flex-direction: column; align-items: flex-start; gap: .8rem; padding-bottom: .3rem; }
+.reaction-texte p { margin: 0; color: var(--kaki); }
+.reaction-texte .tampon { transform: rotate(-8deg); }
+@media (max-width: 480px) { .reaction-visage { width: 118px; height: 138px; } }
+
+/* Page « ordre reçu » : le Sergent derrière la feuille */
+.recu-dossier { position: relative; max-width: 40rem; margin: clamp(120px, 30vw, 190px) auto 0; }
+.recu-sergent { position: absolute; z-index: 0; right: 4%; bottom: calc(100% - 2.4rem); width: clamp(150px, 36vw, 230px); height: auto; filter: drop-shadow(0 18px 30px rgba(0, 0, 0, .6)); }
+.recu-dossier .feuille { position: relative; z-index: 1; }
+
+/* Jeu : le Sergent à côté du plateau */
+.jeu-sergent { width: min(100%, 290px); height: auto; margin-top: 1.5rem; }
+@media (max-width: 900px) { .jeu-sergent { display: none; } }

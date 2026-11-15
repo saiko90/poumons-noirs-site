@@ -6,6 +6,7 @@
   const API = "https://srcvnqfgtazupuzwznrr.supabase.co/rest/v1/rpc/pn_recrue";
   const CLE = "sb_publishable_YUwom0kvnMbpn8Rpug1FaA_1H35zkY_";
   const MOTIFS = ["lundi", "cachette", "vape", "craque", "pause", "prix", "bravo"];
+  const visageDuSergent = (img, nom) => { if (img) img.src = `/img/sergent/${nom}.webp`; };
 
   // ---------- Voix du Sergent ----------
   let voix = null;
@@ -87,6 +88,8 @@
     const sortie = document.getElementById("pertes-resultat");
     const vide = document.getElementById("pertes-vide");
     let derniereReaction = "calc_1";
+    const visage = document.getElementById("pertes-visage");
+    const VISAGES = { calc_1: "sourire-en-coin", calc_2: "degout", calc_3: "pointe", calc_4: "crie" };
     pertes.addEventListener("submit", (ev) => {
       ev.preventDefault();
       const v = (nom) => Math.max(0, parseFloat(String(pertes.elements[nom].value).replace(",", ".")) || 0);
@@ -106,6 +109,7 @@
       vide.hidden = true;
       sortie.hidden = false;
       derniereReaction = total < 2000 ? "calc_1" : total < 10000 ? "calc_2" : total < 30000 ? "calc_3" : "calc_4";
+      visageDuSergent(visage, VISAGES[derniereReaction]);
       jouer(derniereReaction);
     });
     const rejouer = document.getElementById("pertes-rejouer");
@@ -164,11 +168,14 @@
     document.getElementById("recu-motif").textContent = T.motifs[m];
     const suite = document.getElementById("recu-suite");
     const b = document.getElementById("recu-ecouter");
+    const visage = document.getElementById("recu-visage");
+    visageDuSergent(visage, m === "bravo" ? "sourire" : "pointe");
     b.addEventListener("click", () => {
       frapper(b);
       b.setAttribute("aria-pressed", "true");
       empreinte(b.closest(".feuille"), T.empreinteRecu);
-      jouer("envoi_" + m, () => { suite.hidden = false; });
+      visageDuSergent(visage, "crie");
+      jouer("envoi_" + m, () => { suite.hidden = false; visageDuSergent(visage, m === "bravo" ? "salut" : "pointe"); });
       setTimeout(() => { suite.hidden = false; }, 6000);
     });
   }

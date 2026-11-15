@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Operation Black Lungs">
 <meta property="og:title" content="The Sergeant has orders for you">
 <meta property="og:description" content="Someone who cares about you sent the Sergeant. Open and listen.">
-<meta property="og:image" content="https://poumons-noirs.vercel.app/img/og-en.jpg">
+<meta property="og:image" content="https://poumons-noirs.vercel.app/img/og-ordre-en.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:url" content="https://poumons-noirs.vercel.app/order">
 <meta property="og:locale" content="en_US">
@@ -22,16 +22,18 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/stardos-stencil-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/courier-prime-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=1">
-
+<link rel="stylesheet" href="/style.css?v=2">
+<link rel="preload" as="image" href="/img/sergent/crie.webp">
 </head>
 <body data-page="recu">
 <header class="barre"><div class="cadre">
 <a class="marque" href="/en"><img src="/img/icone-192.png" alt="" width="38" height="38"><span>Black Lungs</span></a>
-<nav aria-label="Navigation"><a href="/" lang="fr" hreflang="fr">Français</a></nav>
+<nav aria-label="Navigation"><a class="langue" href="/" lang="fr" hreflang="fr" aria-label="Français"><span class="langue-long" aria-hidden="true">Français</span><span class="langue-court" aria-hidden="true">FR</span></a><a class="bouton bouton-barre" href="/en#signer" aria-label="Sign up"><span class="cta-long" aria-hidden="true">Sign up</span><span class="cta-court" aria-hidden="true">Sign up</span></a></nav>
 </div></header>
 <main class="recu">
 <div class="cadre">
+<div class="recu-dossier">
+<img class="recu-sergent" id="recu-visage" src="/img/sergent/pointe.webp" alt="" width="384" height="373">
 <article class="feuille" aria-labelledby="recu-nom">
 <div class="feuille-tete"><span class="feuille-titre">Mission order</span><span class="feuille-ref">Ref. BL-07</span></div>
 <p>For the attention of</p>
@@ -57,12 +59,13 @@
 <div class="empreinte" aria-hidden="true"></div>
 </article>
 </div>
+</div>
 </main>
 <footer class="pied"><div class="cadre">
 <p>Operation Black Lungs is an app by Swiss Digital Studio, Krystel Fiorbianco, Valais, Switzerland.</p>
 <nav aria-label="Privacy"><a href="/privacy#en">Privacy</a><a href="/suppression#en">Delete my data</a><a href="mailto:contact@swissdigitalstudio.ch">contact@swissdigitalstudio.ch</a><a href="/" lang="fr">Français</a></nav>
 </div></footer>
 <script id="textes" type="application/json">{"erreurEmail": "That address doesn't work. Check your email.", "erreurReseau": "No connection. Try again in a moment.", "recrueOk": "Recruit registered. On D-Day, the Sergeant is coming for you.", "empreinteSigne": "Enlisted", "empreinteRecu": "Order received", "copie": "Link copied.", "copieManuelle": "Copy the link above by hand.", "waNom": "{n}, the Sergeant has orders for you:", "waSans": "The Sergeant has orders for you:", "partageTitre": "Orders from the Sergeant", "soldat": "Soldier", "motifs": {"lundi": "Has been quitting “on Monday” for years", "cachette": "Smokes in secret", "vape": "Vapes all day long", "craque": "Just slipped", "pause": "Lives on smoke breaks", "prix": "Complains about cigarette prices", "bravo": "Quit: to be congratulated"}}</script>
-<script src="/site.js?v=1" defer></script>
+<script src="/site.js?v=2" defer></script>
 </body>
 </html>

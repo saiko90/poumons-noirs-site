@@ -22,31 +22,30 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" href="/fonts/stardos-stencil-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/courier-prime-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=1">
+<link rel="stylesheet" href="/style.css?v=2">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "MobileApplication", "name": "Operation Black Lungs", "alternateName": "Opération Poumons Noirs", "operatingSystem": "Android", "applicationCategory": "HealthApplication", "inLanguage": ["fr", "en"], "description": "A drill sergeant in your pocket to quit smoking or vaping: 365 voiced orders, a craving SOS, a mini-game and zero mercy. Coming soon on Android.", "publisher": {"@type": "Organization", "name": "Swiss Digital Studio"}, "url": "https://poumons-noirs.vercel.app/en"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Operation Black Lungs?", "acceptedAnswer": {"@type": "Answer", "text": "An Android app to quit smoking or vaping. A drill sergeant gives you one voiced order a day for 365 days, helps you hold out against cravings and tracks your progress: days held, money saved, trophies."}}, {"@type": "Question", "name": "Why a sergeant who insults you?", "acceptedAnswer": {"@type": "Answer", "text": "Because some people are fed up with apps that congratulate them for nothing. The Sergeant is tough, funny and crude. Adults only."}}, {"@type": "Question", "name": "How much does it cost?", "acceptedAnswer": {"@type": "Answer", "text": "A 7-day free trial. Then the full program as a one-time purchase, or a monthly or quarterly subscription you can cancel anytime in Google Play. Prices are shown in your currency in the app."}}, {"@type": "Question", "name": "Does it work for vaping?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Vape mode adapts the program, the numbers and the orders to vaping."}}, {"@type": "Question", "name": "What about iPhone?", "acceptedAnswer": {"@type": "Answer", "text": "For now, the app is launching on Android only."}}, {"@type": "Question", "name": "Is my data safe?", "acceptedAnswer": {"@type": "Answer", "text": "Everything stays on your phone. Only buddy mode, if you turn it on, sends a few details to show them to your buddy. No ads, no trackers."}}, {"@type": "Question", "name": "Is it a medical treatment?", "acceptedAnswer": {"@type": "Answer", "text": "No. Operation Black Lungs is not a medical device and is not a substitute for medical advice. For support, talk to your doctor or pharmacist."}}, {"@type": "Question", "name": "When does the app launch?", "acceptedAnswer": {"@type": "Answer", "text": "It's in closed testing on Google Play. Sign your order at the top of the page: you'll get an email on launch day."}}]}</script>
 </head>
 <body>
 <a class="visually-hidden" href="#titre">Skip to content</a>
 <header class="barre"><div class="cadre">
 <a class="marque" href="/en"><img src="/img/icone-192.png" alt="" width="38" height="38"><span>Black Lungs</span></a>
-<nav aria-label="Navigation"><div class="liens-sections"><a href="#programme">The program</a><a href="#pertes-section">Money burned</a><a href="#mission-section">Send the Sergeant</a><a href="#medias">Media</a></div><a href="/" lang="fr" hreflang="fr">Français</a></nav>
+<nav aria-label="Navigation"><div class="liens-sections"><a href="#programme">The program</a><a href="#pertes-section">Money burned</a><a href="#mission-section">Send the Sergeant</a><a href="#medias">Media</a></div><a class="langue" href="/" lang="fr" hreflang="fr" aria-label="Français"><span class="langue-long" aria-hidden="true">Français</span><span class="langue-court" aria-hidden="true">FR</span></a><a class="bouton bouton-barre" href="#signer" aria-label="Sign up"><span class="cta-long" aria-hidden="true">Sign up</span><span class="cta-court" aria-hidden="true">Sign up</span></a></nav>
 </div></header>
 <main>
 <section class="ouverture" aria-labelledby="titre">
+<picture class="ouverture-photo">
+<source media="(max-width: 1199px)" srcset="/img/sergent/accueil-mobile.webp" type="image/webp">
+<img src="/img/sergent/accueil-1400.webp" srcset="/img/sergent/accueil-1400.webp 1400w, /img/sergent/accueil-2330.webp 2330w" sizes="(min-width: 1200px) 1500px, 100vw" alt="Sergeant Noclope points at you, yelling." width="2330" height="1438" fetchpriority="high">
+</picture>
 <div class="cadre ouverture-grille">
-<div>
+<div class="ouverture-texte">
 <h1 id="titre">Quit smoking. That&#x27;s an order.</h1>
 <p class="chapeau">Operation Black Lungs is the app where a drill sergeant gets you off cigarettes. One voiced order a day for a year, an SOS when cravings hit, and not an ounce of mercy.</p>
 <p class="statut">In testing on Android. Coming to Google Play very soon.</p>
 </div>
 <article class="feuille feuille-penchee" id="signer" aria-labelledby="ordre-titre">
 <div class="feuille-tete"><span class="feuille-titre" id="ordre-titre">Mobilization order</span><span class="feuille-ref">Ref. BL-365</span></div>
-<dl>
-<dt>To</dt><dd>You.</dd>
-<dt>Subject</dt><dd>Your last cigarette.</dd>
-<dt>Duration</dt><dd>365 days. Not one less.</dd>
-</dl>
-<p>Every morning, the Sergeant gives you your order of the day. Every craving, you crush it. No discussion.</p>
+<p class="feuille-ligne">To: you. Subject: your last cigarette. Duration: 365 days, not one less.</p>
 <div class="feuille-actions">
 <button class="tampon" type="button" data-tampon="accueil_1,accueil_2,accueil_3" data-empreinte="Order received"><span><span class="tampon-icone" aria-hidden="true">&#9654;</span>Hear the order</span></button>
 <p>Turn the sound up. He doesn&#x27;t talk, he barks.</p>
@@ -100,7 +99,10 @@
 <li>Cigarettes smoked: <strong data-r="clopes"></strong></li>
 <li>End to end: <strong data-r="km"></strong></li>
 </ul>
-<div class="reaction"><button class="tampon tampon-petit" type="button" id="pertes-rejouer"><span>Replay</span></button><span>The Sergeant has seen your numbers.</span></div>
+<div class="reaction">
+<img class="reaction-visage" id="pertes-visage" src="/img/sergent/sourire-en-coin.webp" alt="" width="303" height="375" loading="lazy">
+<div class="reaction-texte"><p>The Sergeant has seen your numbers.</p><button class="tampon tampon-petit" type="button" id="pertes-rejouer"><span>Replay</span></button></div>
+</div>
 </div>
 </div>
 </div>
@@ -138,7 +140,10 @@
 
 <section class="section sombre" id="jeu" aria-labelledby="jeu-titre">
 <div class="cadre jeu-grille">
+<div class="jeu-gauche">
 <div class="section-tete"><h2 id="jeu-titre">Cig Crush</h2><p>The craving SOS mini-game. Line up three cigarettes to crush them, chain combos, hold out for three minutes. Play here, then beat your score in the app.</p></div>
+<img class="jeu-sergent" src="/img/sergent/ecrase.webp" alt="The Sergeant crushes a cigarette in his fist." width="600" height="845" loading="lazy">
+</div>
 <div id="ecrase-clopes" class="jeu" data-lang="en"><p class="jeu-aide">The game needs JavaScript to run.</p></div>
 </div>
 </section>
@@ -150,7 +155,7 @@
 <figure class="video"><video controls preload="none" playsinline poster="/video/sergent-de-poche.jpg"><source src="/video/sergent-de-poche.mp4" type="video/mp4"></video><figcaption>Your pocket sergeant (in French)</figcaption></figure>
 </div>
 <div class="captures" role="list" aria-label="App screenshots"><img src="/img/en/capture_1.webp" alt="A sergeant in your pocket: the order of the day" width="540" height="960" loading="lazy" role="listitem"><img src="/img/en/capture_2.webp" alt="The counter: money, streak, goal" width="540" height="960" loading="lazy" role="listitem"><img src="/img/en/capture_3.webp" alt="Craving SOS: three minutes to kill the craving" width="540" height="960" loading="lazy" role="listitem"><img src="/img/en/capture_4.webp" alt="Trophies, from recruit to legend" width="540" height="960" loading="lazy" role="listitem"><img src="/img/en/capture_5.webp" alt="The war report" width="540" height="960" loading="lazy" role="listitem"><img src="/img/en/capture_6.webp" alt="Alerts and buddy mode" width="540" height="960" loading="lazy" role="listitem"><img src="/img/en/capture_7.webp" alt="Smoke or vape mode" width="540" height="960" loading="lazy" role="listitem"></div>
-<div class="presse"><p>The press kit contains the icon, banners, screenshots in English and French, descriptions and audio clips of the Sergeant.</p><a class="bouton" href="/presse/poumons-noirs-dossier-presse.zip" download>Download the press kit (ZIP)</a></div>
+<div class="presse"><p>The press kit contains the icon, banners, screenshots in English and French, the Sergeant&#x27;s artwork (with cut-outs), descriptions and clips of his voice.</p><a class="bouton" href="/presse/poumons-noirs-dossier-presse.zip" download>Download the press kit (ZIP, 10 MB)</a></div>
 </div>
 </section>
 
@@ -166,7 +171,7 @@
 <nav aria-label="Privacy"><a href="/privacy#en">Privacy</a><a href="/suppression#en">Delete my data</a><a href="mailto:contact@swissdigitalstudio.ch">contact@swissdigitalstudio.ch</a><a href="/" lang="fr">Français</a></nav>
 </div></footer>
 <script id="textes" type="application/json">{"erreurEmail": "That address doesn't work. Check your email.", "erreurReseau": "No connection. Try again in a moment.", "recrueOk": "Recruit registered. On D-Day, the Sergeant is coming for you.", "empreinteSigne": "Enlisted", "empreinteRecu": "Order received", "copie": "Link copied.", "copieManuelle": "Copy the link above by hand.", "waNom": "{n}, the Sergeant has orders for you:", "waSans": "The Sergeant has orders for you:", "partageTitre": "Orders from the Sergeant", "soldat": "Soldier"}</script>
-<script src="/site.js?v=1" defer></script>
+<script src="/site.js?v=2" defer></script>
 <script src="/jeu.js?v=1" defer></script>
 </body>
 </html>
