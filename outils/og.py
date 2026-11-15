@@ -27,14 +27,14 @@ h1 {{ font: 700 {taille}px/.9 S; text-transform: uppercase; text-shadow: 0 4px 2
 </style></head><body>
 <img class="photo" src="{H}/img/sergent/accueil-2330-v2.webp">
 <div class="texte">{contenu}</div>
-<div class="marque"><img src="{H}/img/icone-192.png"><span>{marque}</span></div>
+<div class="marque"><img src="{H}/img/icone-192-v2.png"><span>{marque}</span></div>
 </body></html>"""
 
 PAGES = {
-    "og-fr": dict(taille=80, marque="Poumons Noirs", contenu="""<p class="etiquette">Opération Poumons Noirs</p><h1>Arrête de fumer. C'est un ordre.</h1><p class="statut">Bientôt sur Google Play</p>"""),
-    "og-en": dict(taille=80, marque="Black Lungs", contenu="""<p class="etiquette">Operation Black Lungs</p><h1>Quit smoking. That's an order.</h1><p class="statut">Coming soon on Google Play</p>"""),
-    "og-ordre-fr": dict(taille=66, marque="Poumons Noirs", contenu="""<p class="tampon">Ordre de mission</p><h1>Le Sergent a un ordre pour toi.</h1><p class="sous">Quelqu'un qui tient à toi l'a envoyé. Monte le son.</p>"""),
-    "og-ordre-en": dict(taille=66, marque="Black Lungs", contenu="""<p class="tampon">Mission order</p><h1>The Sergeant has orders for you.</h1><p class="sous">Someone who cares about you sent him. Turn the sound up.</p>"""),
+    "og-fr-v2": dict(taille=80, marque="Poumons Noirs", contenu="""<p class="etiquette">Opération Poumons Noirs</p><h1>Arrête de fumer. C'est un ordre.</h1><p class="statut">Bientôt sur Google Play</p>"""),
+    "og-en-v2": dict(taille=80, marque="Black Lungs", contenu="""<p class="etiquette">Operation Black Lungs</p><h1>Quit smoking. That's an order.</h1><p class="statut">Coming soon on Google Play</p>"""),
+    "og-ordre-fr-v2": dict(taille=66, marque="Poumons Noirs", contenu="""<p class="tampon">Ordre de mission</p><h1>Le Sergent a un ordre pour toi.</h1><p class="sous">Quelqu'un qui tient à toi l'a envoyé. Monte le son.</p>"""),
+    "og-ordre-en-v2": dict(taille=66, marque="Black Lungs", contenu="""<p class="tampon">Mission order</p><h1>The Sergeant has orders for you.</h1><p class="sous">Someone who cares about you sent him. Turn the sound up.</p>"""),
 }
 
 with sync_playwright() as p:

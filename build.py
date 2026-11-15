@@ -202,7 +202,7 @@ TXT["fr"] = appliquer_typo(TXT["fr"])
 
 
 def tete(d, l, titre, desc, chemin, noindex=False, extra="", og=None):
-    og = og or f"og-{l}"
+    og = og or f"og-{l}-v2"
     autres = f'<link rel="alternate" hreflang="fr" href="{BASE}/"><link rel="alternate" hreflang="en" href="{BASE}/en"><link rel="alternate" hreflang="x-default" href="{BASE}/">' if not noindex else ""
     robots = '<meta name="robots" content="noindex">' if noindex else ""
     return f"""<!doctype html>
@@ -225,8 +225,8 @@ def tete(d, l, titre, desc, chemin, noindex=False, extra="", og=None):
 <meta property="og:locale" content="{d['locale']}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#070707">
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon-v2.png" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="/apple-touch-icon-v2.png">
 <link rel="preload" href="/fonts/stardos-stencil-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/courier-prime-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/style.css?v=2">
@@ -239,7 +239,7 @@ def barre(d, l, avec_sections=True):
     if avec_sections:
         sections = f"""<div class="liens-sections"><a href="#programme">{e(d['navProgramme'])}</a><a href="#pertes-section">{e(d['navCalcul'])}</a><a href="#mission-section">{e(d['navMission'])}</a><a href="#medias">{e(d['navMedias'])}</a></div>"""
     return f"""<header class="barre"><div class="cadre">
-<a class="marque" href="{d['chemin']}"><img src="/img/icone-192.png" alt="" width="38" height="38"><span>{e(d['marque'])}</span></a>
+<a class="marque" href="{d['chemin']}"><img src="/img/icone-192-v2.png" alt="" width="38" height="38"><span>{e(d['marque'])}</span></a>
 <nav aria-label="{e(d['navLabel'])}">{sections}<a class="langue" href="{d['autreChemin']}" lang="{d['autre']}" hreflang="{d['autre']}" aria-label="{e(d['autreLangue'])}"><span class="langue-long" aria-hidden="true">{e(d['autreLangue'])}</span><span class="langue-court" aria-hidden="true">{d['langueCourt']}</span></a><a class="bouton bouton-barre" href="{'' if avec_sections else d['chemin']}#signer" aria-label="{e(d['barreCta'])}"><span class="cta-long" aria-hidden="true">{e(d['barreCta'])}</span><span class="cta-court" aria-hidden="true">{e(d['barreCtaCourt'])}</span></a></nav>
 </div></header>"""
 
@@ -440,7 +440,7 @@ def page_accueil(l, avec_jeu):
 
 def page_recu(l):
     d = TXT[l]
-    return f"""{tete(d, l, d['recuTitle'], d['recuDesc'], d['recuChemin'], noindex=True, og=f"og-ordre-{l}", extra='<link rel="preload" as="image" href="/img/sergent/crie.webp">')}
+    return f"""{tete(d, l, d['recuTitle'], d['recuDesc'], d['recuChemin'], noindex=True, og=f"og-ordre-{l}-v2", extra='<link rel="preload" as="image" href="/img/sergent/crie.webp">')}
 <body data-page="recu">
 {barre(d, l, avec_sections=False)}
 <main class="recu">
