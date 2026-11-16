@@ -9,6 +9,32 @@
   const ORIGINE = location.hostname.endsWith(".vercel.app") ? "https://www.poumonsnoirs.com" : location.origin;
   const visageDuSergent = (img, nom) => { if (img) img.src = `/img/sergent/${nom}.webp`; };
 
+  // ---------- Comptage anonyme des visites (aucun cookie, aucune IP) ----------
+  const SOURCES = [["tiktok", /(^|\.)tiktok\.com$/], ["youtube", /(^|\.)(youtube\.com|youtu\.be)$/],
+    ["instagram", /(^|\.)instagram\.com$/], ["facebook", /(^|\.)(facebook\.com|fb\.com|fb\.me|messenger\.com)$/],
+    ["whatsapp", /(^|\.)whatsapp\.(com|net)$/], ["google", /(^|\.)google\.[a-z.]+$/], ["bing", /(^|\.)bing\.com$/],
+    ["linkedin", /(^|\.)(linkedin\.com|lnkd\.in)$/], ["x", /(^|\.)(twitter\.com|x\.com|t\.co)$/]];
+  const hote = (url) => { try { return new URL(url).hostname.replace(/^www\./, ""); } catch (e) { return ""; } };
+  const REFERENT = hote(document.referrer);
+  const SOURCE = (() => {
+    const q = new URLSearchParams(location.search);
+    const s = (q.get("src") || q.get("utm_source") || "").toLowerCase().replace(/[^a-z0-9_-]/g, "").slice(0, 20);
+    if (s) return s;
+    if (!REFERENT) return "direct";
+    if (REFERENT === location.hostname.replace(/^www\./, "")) return "interne";
+    for (const [nom, motif] of SOURCES) if (motif.test(REFERENT)) return nom;
+    return REFERENT.slice(0, 40);
+  })();
+  if (!navigator.webdriver && !/bot|crawl|spider|slurp|headless|lighthouse|preview/i.test(navigator.userAgent)) {
+    fetch(API.replace("pn_recrue", "pn_visite"), {
+      method: "POST", keepalive: true,
+      headers: { "Content-Type": "application/json", apikey: CLE },
+      body: JSON.stringify({ p_page: location.pathname.slice(0, 80), p_langue: L, p_source: SOURCE,
+        p_referent: SOURCE === "interne" ? null : REFERENT || null,
+        p_appareil: /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? "mobile" : "ordi" }),
+    }).catch(() => {});
+  }
+
   // ---------- Voix du Sergent ----------
   let voix = null;
   function jouer(nom, fin) {
@@ -58,7 +84,7 @@
         const r = await fetch(API, {
           method: "POST",
           headers: { "Content-Type": "application/json", apikey: CLE },
-          body: JSON.stringify({ p_email: email, p_langue: L, p_source: form.dataset.recrue }),
+          body: JSON.stringify({ p_email: email, p_langue: L, p_source: `${form.dataset.recrue}:${SOURCE}`.slice(0, 40) }),
         });
         const j = await r.json().catch(() => ({}));
         if (r.ok && j.ok) {

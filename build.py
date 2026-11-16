@@ -266,7 +266,7 @@ def script_textes(d, avec_motifs=False):
     js = dict(d["js"])
     if avec_motifs:
         js["motifs"] = d["motifs"]
-    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=3" defer></script>'
+    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=4" defer></script>'
 
 
 def page_accueil(l, avec_jeu):

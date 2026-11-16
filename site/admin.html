@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>QG – Opération Poumons Noirs</title>
+<link rel="icon" href="/favicon-v2.png" type="image/png">
+<style>
+@font-face { font-family: "Stardos Stencil"; src: url("/fonts/stardos-stencil-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+@font-face { font-family: "Courier Prime"; src: url("/fonts/courier-prime-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Courier Prime"; src: url("/fonts/courier-prime-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+:root {
+  --noir: #070707; --carte: #141111; --trait: rgba(230,225,211,.13); --os: #e6e1d3; --gris: #9a9f9f;
+  --kaki: #9aa36a; --sang: #c1121f; --sang-clair: #e5484d;
+  --stencil: "Stardos Stencil", "Rockwell", Georgia, serif; --machine: "Courier Prime", "Courier New", ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: radial-gradient(ellipse 900px 420px at 50% -120px, #2a0608 0%, rgba(7,7,7,0) 100%), var(--noir);
+  color: var(--os); font: 400 16px/1.5 var(--machine); min-height: 100vh; }
+.cadre { max-width: 1120px; margin: 0 auto; padding: 28px 20px 60px; }
+h1 { font: 700 34px/1.1 var(--stencil); letter-spacing: .02em; }
+h2 { font: 700 20px/1.2 var(--stencil); letter-spacing: .03em; margin-bottom: 14px; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--kaki); outline-offset: 3px; }
+.bouton { background: var(--sang); border: 0; color: var(--os); padding: 11px 18px; font-weight: 700; border-radius: 4px; }
+.bouton:hover { background: #a50f1a; }
+.lien { background: none; border: 1px solid var(--trait); padding: 8px 14px; border-radius: 4px; color: var(--os); }
+.lien:hover { border-color: var(--gris); }
+
+/* Connexion */
+.connexion { max-width: 420px; margin: 12vh auto 0; background: var(--carte); border: 1px solid var(--trait); border-radius: 8px; padding: 30px; }
+.connexion img { width: 64px; height: 64px; border-radius: 50%; display: block; margin-bottom: 16px; }
+.connexion p { color: var(--gris); margin: 6px 0 20px; }
+.connexion label { display: block; margin-bottom: 6px; font-weight: 700; }
+.connexion input[type=password] { width: 100%; background: #0b0a0a; border: 1px solid var(--trait); border-radius: 4px; padding: 12px; margin-bottom: 12px; }
+.connexion .case { display: flex; gap: 8px; align-items: center; font-weight: 400; color: var(--gris); margin-bottom: 18px; }
+.connexion .bouton { width: 100%; }
+.erreur { color: var(--sang-clair); min-height: 24px; margin-top: 12px; }
+
+/* Tableau de bord */
+.tete { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 26px; }
+.tete .maj { color: var(--gris); font-size: 14px; margin-top: 6px; }
+.tete .actions { display: flex; gap: 10px; }
+.chiffres { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+.chiffre { background: var(--carte); border: 1px solid var(--trait); border-radius: 8px; padding: 18px 18px 16px; }
+.chiffre .valeur { font: 700 48px/1 var(--stencil); }
+.chiffre .nom { color: var(--os); font-weight: 700; margin-top: 10px; }
+.chiffre .detail { color: var(--gris); font-size: 14px; }
+.chiffre.principal .valeur { color: var(--sang-clair); }
+.bloc { background: var(--carte); border: 1px solid var(--trait); border-radius: 8px; padding: 20px; margin-bottom: 18px; }
+.deux { display: grid; grid-template-columns: 3fr 2fr; gap: 18px; }
+.deux .bloc { margin-bottom: 0; }
+.legende { display: flex; gap: 18px; color: var(--gris); font-size: 14px; margin: -6px 0 10px; }
+.legende i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+svg text { font-family: var(--machine); fill: var(--gris); font-size: 12px; }
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; color: var(--gris); font-weight: 400; font-size: 14px; padding: 0 8px 8px 0; border-bottom: 1px solid var(--trait); }
+td { padding: 9px 8px 9px 0; border-bottom: 1px solid var(--trait); vertical-align: top; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+tr:last-child td { border-bottom: 0; }
+.sous { color: var(--gris); font-size: 13px; }
+.vide { color: var(--gris); padding: 8px 0; }
+.liste-tete { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.liste-tete h2 { margin: 0; }
+.liste-tete .actions { display: flex; gap: 10px; }
+.defile { max-height: 520px; overflow: auto; }
+.email { word-break: break-all; }
+.appareils { display: flex; height: 14px; border-radius: 3px; overflow: hidden; background: #0b0a0a; margin: 6px 0 10px; }
+.appareils span { display: block; height: 100%; }
+.note { color: var(--gris); font-size: 13px; margin-top: 10px; }
+@media (max-width: 600px) {
+  #liste table, #liste tbody, #liste tr, #liste td { display: block; width: 100%; }
+  #liste thead { display: none; }
+  #liste tr { padding: 10px 0; border-bottom: 1px solid var(--trait); }
+  #liste td { border: 0; padding: 1px 0; }
+  #liste td.email { font-weight: 700; }
+  #liste td.date, #liste td.langue { display: inline; width: auto; color: var(--gris); font-size: 14px; }
+  #liste td.langue::before { content: " · "; }
+}
+@media (max-width: 860px) {
+  .chiffres { grid-template-columns: repeat(2, 1fr); }
+  .deux { grid-template-columns: 1fr; }
+  .chiffre .valeur { font-size: 40px; }
+}
+</style>
+</head>
+<body>
+<main class="cadre">
+
+<section class="connexion" id="ecran-connexion" hidden>
+  <img src="/img/icone-192-v2.png" alt="" width="64" height="64">
+  <h1>QG du Sergent</h1>
+  <p>Inscrits et visites du site poumonsnoirs.com.</p>
+  <form id="form-connexion">
+    <label for="cle">Mot de passe</label>
+    <input type="password" id="cle" autocomplete="current-password" required>
+    <label class="case"><input type="checkbox" id="garder" checked> Rester connecté sur cet appareil</label>
+    <button class="bouton" type="submit">Entrer</button>
+    <p class="erreur" id="erreur" role="alert"></p>
+  </form>
+</section>
+
+<section id="ecran-bord" hidden>
+  <div class="tete">
+    <div>
+      <h1>QG du Sergent</h1>
+      <p class="maj" id="maj"></p>
+    </div>
+    <div class="actions">
+      <button class="lien" id="actualiser" type="button">Actualiser</button>
+      <button class="lien" id="sortir" type="button">Se déconnecter</button>
+    </div>
+  </div>
+
+  <div class="chiffres">
+    <div class="chiffre principal"><div class="valeur" id="k-inscrits">0</div><div class="nom">Inscrits</div><div class="detail" id="k-inscrits-7">0 cette semaine</div></div>
+    <div class="chiffre"><div class="valeur" id="k-visites-7">0</div><div class="nom">Visites, 7 jours</div><div class="detail" id="k-visites-jour">0 aujourd'hui</div></div>
+    <div class="chiffre"><div class="valeur" id="k-visites-30">0</div><div class="nom">Visites, 30 jours</div><div class="detail" id="k-pages-30">0 pages vues</div></div>
+    <div class="chiffre"><div class="valeur" id="k-taux">0 %</div><div class="nom">Taux d'inscription</div><div class="detail">inscrits / visites, 30 jours</div></div>
+  </div>
+
+  <div class="bloc">
+    <h2>Les 30 derniers jours</h2>
+    <div class="legende"><span><i style="background:var(--kaki)"></i>Visites</span><span><i style="background:var(--sang)"></i>Inscrits</span></div>
+    <div id="graphe"></div>
+  </div>
+
+  <div class="deux">
+    <div class="bloc">
+      <h2>D'où viennent les visiteurs</h2>
+      <div id="sources"></div>
+      <p class="note">« Direct » : lien tapé à la main, ou ouvert depuis une appli qui ne dit pas d'où il vient (souvent TikTok). Pour savoir quel réseau amène du monde, mets ?src=youtube, ?src=instagram… au bout de tes liens.</p>
+    </div>
+    <div class="bloc">
+      <h2>Appareils</h2>
+      <div id="appareils"></div>
+      <h2 style="margin-top:22px">Pages vues</h2>
+      <div id="pages"></div>
+    </div>
+  </div>
+
+  <div class="bloc" style="margin-top:18px">
+    <div class="liste-tete">
+      <h2 id="titre-liste">Inscrits</h2>
+      <div class="actions">
+        <button class="lien" id="copier" type="button">Copier les e-mails</button>
+        <button class="lien" id="csv" type="button">Télécharger en CSV</button>
+      </div>
+    </div>
+    <div class="defile" id="liste"></div>
+  </div>
+</section>
+
+</main>
+<script>
+(() => {
+  "use strict";
+  const API = "https://srcvnqfgtazupuzwznrr.supabase.co/rest/v1/rpc/pn_admin";
+  const CLE_PUBLIQUE = "sb_publishable_YUwom0kvnMbpn8Rpug1FaA_1H35zkY_";
+  const RANGEMENT = "pn_admin_cle";
+  const NOMS = { direct: "Direct", interne: "Navigation interne", tiktok: "TikTok", youtube: "YouTube", instagram: "Instagram",
+    facebook: "Facebook", whatsapp: "WhatsApp", google: "Google", bing: "Bing", linkedin: "LinkedIn", x: "X (Twitter)", inconnue: "Inconnue" };
+  const FORMULAIRES = { site: "page d'accueil", ordre: "page ordre reçu" };
+  const $ = (id) => document.getElementById(id);
+  const nf = new Intl.NumberFormat("fr-CH");
+  const fd = new Intl.DateTimeFormat("fr-CH", { timeZone: "Europe/Zurich", day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" });
+  const fh = new Intl.DateTimeFormat("fr-CH", { timeZone: "Europe/Zurich", hour: "2-digit", minute: "2-digit" });
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  const nomSource = (s) => NOMS[s] || s;
+  let cle = null, donnees = null;
+
+  const lire = () => { try { return localStorage.getItem(RANGEMENT) || sessionStorage.getItem(RANGEMENT); } catch (e) { return null; } };
+  const ranger = (v, garder) => { try { (garder ? localStorage : sessionStorage).setItem(RANGEMENT, v); } catch (e) {} };
+  const oublier = () => { try { localStorage.removeItem(RANGEMENT); sessionStorage.removeItem(RANGEMENT); } catch (e) {} };
+
+  async function charger(k) {
+    const r = await fetch(API, { method: "POST", headers: { "Content-Type": "application/json", apikey: CLE_PUBLIQUE }, body: JSON.stringify({ p_cle: k }) });
+    if (!r.ok) throw new Error("reseau");
+    return r.json();
+  }
+
+  function montrer(ecran) {
+    $("ecran-connexion").hidden = ecran !== "connexion";
+    $("ecran-bord").hidden = ecran !== "bord";
+    if (ecran === "connexion") $("cle").focus();
+  }
+
+  $("form-connexion").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    const k = $("cle").value.trim();
+    const bouton = ev.submitter || $("form-connexion").querySelector("button");
+    $("erreur").textContent = "";
+    bouton.disabled = true;
+    try {
+      const d = await charger(k);
+      if (!d.ok) { $("erreur").textContent = "Mot de passe incorrect."; return; }
+      cle = k; ranger(k, $("garder").checked); $("cle").value = "";
+      montrer("bord"); afficher(d);
+    } catch (e) {
+      $("erreur").textContent = "Impossible de joindre la base. Vérifie ta connexion et réessaie.";
+    } finally { bouton.disabled = false; }
+  });
+
+  $("sortir").addEventListener("click", () => { oublier(); cle = null; donnees = null; montrer("connexion"); });
+  $("actualiser").addEventListener("click", async () => {
+    $("actualiser").disabled = true;
+    try { const d = await charger(cle); if (d.ok) afficher(d); else { oublier(); montrer("connexion"); } }
+    catch (e) { $("maj").textContent = "Actualisation impossible : vérifie ta connexion."; }
+    finally { $("actualiser").disabled = false; }
+  });
+
+  function afficher(d) {
+    donnees = d;
+    const t = d.totaux;
+    $("maj").textContent = `Chiffres à ${fh.format(new Date(d.genere_le))}, heure suisse`;
+    $("k-inscrits").textContent = nf.format(t.inscrits);
+    $("k-inscrits-7").textContent = `${nf.format(t.inscrits_7j)} cette semaine`;
+    $("k-visites-7").textContent = nf.format(t.arrivees_7j);
+    $("k-visites-jour").textContent = `${nf.format(t.arrivees_jour)} aujourd'hui`;
+    $("k-visites-30").textContent = nf.format(t.arrivees_30j);
+    $("k-pages-30").textContent = `${nf.format(t.pages_30j)} pages vues`;
+    $("k-taux").textContent = t.arrivees_30j ? `${(100 * t.inscrits_30j / t.arrivees_30j).toFixed(1).replace(".", ",")} %` : "–";
+    graphe(d.jours);
+    sources(d.sources);
+    pages(d.pages);
+    appareils(d.appareils);
+    liste(d.recrues);
+  }
+
+  function graphe(jours) {
+    const L = Math.max(300, Math.round($("graphe").clientWidth) || 1040), H = 250, g = 34, h1 = 132, h2 = 52, ecart = 22;
+    const n = jours.length, pas = (L - g) / n, larg = Math.max(4, pas * 0.62);
+    const maxV = Math.max(1, ...jours.map((j) => j.arrivees)), maxI = Math.max(1, ...jours.map((j) => j.inscrits));
+    const y2 = h1 + ecart;
+    let s = `<svg viewBox="0 0 ${L} ${H}" width="100%" role="img" aria-label="Visites et inscrits par jour sur 30 jours">`;
+    s += `<text x="0" y="12">${maxV}</text><line x1="${g}" y1="${h1}" x2="${L}" y2="${h1}" stroke="rgba(230,225,211,.18)"/>`;
+    s += `<text x="0" y="${y2 + 12}">${maxI}</text><line x1="${g}" y1="${y2 + h2}" x2="${L}" y2="${y2 + h2}" stroke="rgba(230,225,211,.18)"/>`;
+    jours.forEach((j, i) => {
+      const x = g + i * pas + (pas - larg) / 2;
+      const hv = (j.arrivees / maxV) * (h1 - 16), hi = (j.inscrits / maxI) * (h2 - 6);
+      const date = new Date(j.jour + "T12:00:00");
+      const titre = `${date.toLocaleDateString("fr-CH", { weekday: "short", day: "numeric", month: "short" })} : ${j.arrivees} visite${j.arrivees > 1 ? "s" : ""}, ${j.inscrits} inscrit${j.inscrits > 1 ? "s" : ""}`;
+      s += `<g><title>${esc(titre)}</title>`;
+      s += `<rect x="${x}" y="${h1 - hv}" width="${larg}" height="${Math.max(hv, j.arrivees ? 2 : 0)}" fill="#9aa36a" rx="1.5"/>`;
+      s += `<rect x="${x}" y="${y2 + h2 - hi}" width="${larg}" height="${Math.max(hi, j.inscrits ? 2 : 0)}" fill="#c1121f" rx="1.5"/>`;
+      s += `<rect x="${g + i * pas}" y="0" width="${pas}" height="${y2 + h2}" fill="transparent"/></g>`;
+      if ((n - 1 - i) % 5 === 0) s += `<text x="${x + larg / 2}" y="${H - 4}" text-anchor="middle">${date.getDate()}.${date.getMonth() + 1}</text>`;
+    });
+    $("graphe").innerHTML = s + "</svg>";
+  }
+
+  function sources(lignes) {
+    if (!lignes.length) { $("sources").innerHTML = '<p class="vide">Aucune visite pour l\'instant.</p>'; return; }
+    let s = '<table><thead><tr><th>Source</th><th class="n">Visites</th><th class="n">Inscrits</th><th class="n">Taux</th></tr></thead><tbody>';
+    for (const l of lignes) {
+      const taux = l.arrivees ? `${(100 * l.inscrits / l.arrivees).toFixed(1).replace(".", ",")} %` : "–";
+      s += `<tr><td>${esc(nomSource(l.source))}</td><td class="n">${nf.format(l.arrivees)}</td><td class="n">${nf.format(l.inscrits)}</td><td class="n">${taux}</td></tr>`;
+    }
+    $("sources").innerHTML = s + "</tbody></table>";
+  }
+
+  function pages(lignes) {
+    if (!lignes.length) { $("pages").innerHTML = '<p class="vide">Aucune page vue pour l\'instant.</p>'; return; }
+    let s = '<table><thead><tr><th>Page</th><th class="n">Vues</th></tr></thead><tbody>';
+    for (const l of lignes) s += `<tr><td>${esc(l.page)}</td><td class="n">${nf.format(l.vues)}</td></tr>`;
+    $("pages").innerHTML = s + "</tbody></table>";
+  }
+
+  function appareils(a) {
+    const m = a.mobile || 0, o = a.ordi || 0, tot = m + o;
+    if (!tot) { $("appareils").innerHTML = '<p class="vide">Pas encore de données.</p>'; return; }
+    const pm = Math.round(100 * m / tot);
+    $("appareils").innerHTML = `<div class="appareils"><span style="width:${pm}%;background:#9aa36a"></span><span style="width:${100 - pm}%;background:#4a4535"></span></div>
+      <p class="sous">Mobile ${pm} % (${nf.format(m)}), ordinateur ${100 - pm} % (${nf.format(o)})</p>`;
+  }
+
+  function liste(recrues) {
+    $("titre-liste").textContent = `Inscrits (${nf.format(recrues.length)})`;
+    $("copier").disabled = $("csv").disabled = !recrues.length;
+    if (!recrues.length) { $("liste").innerHTML = '<p class="vide">Aucun inscrit pour l\'instant. Ils arrivent par le formulaire « Signe l\'ordre » du site.</p>'; return; }
+    let s = '<table><thead><tr><th>E-mail</th><th>Inscrit le</th><th>Langue</th><th>Source</th></tr></thead><tbody>';
+    for (const r of recrues) {
+      const [form, src] = String(r.source || "").split(":");
+      s += `<tr><td class="email">${esc(r.email)}</td><td class="date">${fd.format(new Date(r.le))}</td><td class="langue">${esc((r.langue || "").toUpperCase())}</td>
+        <td>${esc(nomSource(src || "inconnue"))}<div class="sous">${esc(FORMULAIRES[form] || form || "")}</div></td></tr>`;
+    }
+    $("liste").innerHTML = s + "</tbody></table>";
+  }
+
+  $("copier").addEventListener("click", async () => {
+    const texte = donnees.recrues.map((r) => r.email).join("\n");
+    try { await navigator.clipboard.writeText(texte); $("copier").textContent = "E-mails copiés"; }
+    catch (e) { $("copier").textContent = "Copie impossible"; }
+    setTimeout(() => { $("copier").textContent = "Copier les e-mails"; }, 2000);
+  });
+
+  $("csv").addEventListener("click", () => {
+    const champ = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+    const lignes = [["email", "inscrit_le", "langue", "source", "formulaire"].join(";")];
+    for (const r of donnees.recrues) {
+      const [form, src] = String(r.source || "").split(":");
+      lignes.push([r.email, fd.format(new Date(r.le)), r.langue, src || "", form || ""].map(champ).join(";"));
+    }
+    const blob = new Blob(["﻿" + lignes.join("\r\n")], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `inscrits-poumons-noirs-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+
+  // Démarrage : reconnexion automatique si l'appareil a gardé le mot de passe
+  (async () => {
+    const k = lire();
+    if (!k) { montrer("connexion"); return; }
+    try {
+      const d = await charger(k);
+      if (d.ok) { cle = k; montrer("bord"); afficher(d); } else { oublier(); montrer("connexion"); }
+    } catch (e) { montrer("connexion"); $("erreur").textContent = "Impossible de joindre la base. Vérifie ta connexion et réessaie."; }
+  })();
+})();
+</script>
+</body>
+</html>
