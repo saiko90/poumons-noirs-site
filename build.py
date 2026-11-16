@@ -1,13 +1,35 @@
 #!/usr/bin/env python3
 """Construit le site Opération Poumons Noirs (FR + EN) dans site/."""
 import html, json, os, re
+from datetime import date, datetime
+from zoneinfo import ZoneInfo
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 SORTIE = os.path.join(ICI, "site")
 BASE = os.environ.get("PN_BASE", "https://www.poumonsnoirs.com")
 MOTIFS = ["lundi", "cachette", "vape", "craque", "pause", "prix", "bravo"]
 
+# Jour J : sortie estimée sur Google Play (le compte à rebours s'arrête à minuit, heure suisse).
+# Pour déplacer la date, change cette ligne et relance build.py : compteur, date affichée et FAQ suivent.
+LANCEMENT = date(2026, 12, 4)
+
 e = html.escape
+
+JOURS_SEMAINE = {"fr": ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"],
+                 "en": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]}
+MOIS = {"fr": ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"],
+        "en": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]}
+
+
+def date_courte(l, j=LANCEMENT):
+    if l == "fr":
+        return f"{j.day}{'er' if j.day == 1 else ''} {MOIS['fr'][j.month - 1]} {j.year}"
+    return f"{MOIS['en'][j.month - 1]} {j.day}, {j.year}"
+
+
+def date_longue(l, j=LANCEMENT):
+    jour = JOURS_SEMAINE[l][j.weekday()]
+    return f"{jour} {date_courte(l, j)}" if l == "fr" else f"{jour}, {date_courte(l, j)}"
 
 
 def typo_fr(s):
@@ -26,7 +48,9 @@ TXT = {
         "marque": "Poumons Noirs", "navLabel": "Navigation", "navProgramme": "Le programme", "navCalcul": "Combien t'as cramé", "navMission": "Envoie le Sergent", "navJeu": "Écrase-Clopes", "navMedias": "Médias",
         "h1": "Arrête de fumer. C'est un ordre.",
         "chapeau": "Opération Poumons Noirs, c'est l'appli où un sergent instructeur te sort de la clope. Un ordre vocal par jour pendant un an, un SOS quand l'envie monte, et pas une once de pitié.",
-        "statut": "En test sur Android. Sortie sur Google Play très bientôt.",
+        "jjTitre": "Sortie sur Google Play dans", "jjUnites": ["jours", "heures", "minutes", "secondes"],
+        "jjAvant": "Jour J : ", "jjApres": ". L'appli est déjà en test sur Android.",
+        "jjFiniGros": "Jour J", "jjFini": "Lancement imminent sur Google Play.",
         "ordreTitre": "Ordre de mobilisation", "ordreRef": "Réf. PN-365",
         "destLabel": "Destinataire", "dest": "Toi.", "objetLabel": "Objet", "objet": "Ta dernière cigarette.", "dureeLabel": "Durée", "duree": "365 jours. Pas un de moins.",
         "ordreTexte": "Chaque matin, le Sergent te donne ton ordre du jour. Chaque envie, tu l'écrases. Tu ne discutes pas.",
@@ -81,7 +105,7 @@ TXT = {
             ("Et sur iPhone ?", "Pour l'instant, l'appli sort uniquement sur Android."),
             ("Mes données sont-elles en sécurité ?", "Tout reste sur ton téléphone. Seul le mode binôme, si tu l'actives, envoie quelques infos pour les montrer à ton binôme. Pas de pub, pas de pisteurs."),
             ("C'est un traitement médical ?", "Non. Opération Poumons Noirs n'est pas un dispositif médical et ne remplace pas un avis médical. Pour un accompagnement, parles-en à ton médecin ou à ton pharmacien."),
-            ("Quand sort l'appli ?", "Elle est en test fermé sur Google Play. Signe ton ordre en haut de la page : tu reçois un e-mail le jour de la sortie."),
+            ("Quand sort l'appli ?", f"La sortie sur Google Play est prévue le {date_courte('fr')}. D'ici là, elle est en test fermé. Signe ton ordre en haut de la page : tu reçois un e-mail le jour de la sortie."),
         ],
         "faqLien": "Les détails sont dans la politique de confidentialité.",
         "pied": "Opération Poumons Noirs est une appli de Swiss Digital Studio, Krystel Fiorbianco, Valais, Suisse.",
@@ -109,7 +133,9 @@ TXT = {
         "marque": "Black Lungs", "navLabel": "Navigation", "navProgramme": "The program", "navCalcul": "Money burned", "navMission": "Send the Sergeant", "navJeu": "Cig Crush", "navMedias": "Media",
         "h1": "Quit smoking. That's an order.",
         "chapeau": "Operation Black Lungs is the app where a drill sergeant gets you off cigarettes. One voiced order a day for a year, an SOS when cravings hit, and not an ounce of mercy.",
-        "statut": "In testing on Android. Coming to Google Play very soon.",
+        "jjTitre": "On Google Play in", "jjUnites": ["days", "hours", "minutes", "seconds"],
+        "jjAvant": "D-Day: ", "jjApres": ". The app is already in testing on Android.",
+        "jjFiniGros": "D-Day", "jjFini": "Launching on Google Play any moment now.",
         "ordreTitre": "Mobilization order", "ordreRef": "Ref. BL-365",
         "destLabel": "To", "dest": "You.", "objetLabel": "Subject", "objet": "Your last cigarette.", "dureeLabel": "Duration", "duree": "365 days. Not one less.",
         "ordreTexte": "Every morning, the Sergeant gives you your order of the day. Every craving, you crush it. No discussion.",
@@ -164,7 +190,7 @@ TXT = {
             ("What about iPhone?", "For now, the app is launching on Android only."),
             ("Is my data safe?", "Everything stays on your phone. Only buddy mode, if you turn it on, sends a few details to show them to your buddy. No ads, no trackers."),
             ("Is it a medical treatment?", "No. Operation Black Lungs is not a medical device and is not a substitute for medical advice. For support, talk to your doctor or pharmacist."),
-            ("When does the app launch?", "It's in closed testing on Google Play. Sign your order at the top of the page: you'll get an email on launch day."),
+            ("When does the app launch?", f"Launch on Google Play is planned for {date_courte('en')}. Until then, it's in closed testing. Sign your order at the top of the page: you'll get an email on launch day."),
         ],
         "faqLien": "Details are in the privacy policy.",
         "pied": "Operation Black Lungs is an app by Swiss Digital Studio, Krystel Fiorbianco, Valais, Switzerland.",
@@ -229,7 +255,7 @@ def tete(d, l, titre, desc, chemin, noindex=False, extra="", og=None):
 <link rel="apple-touch-icon" href="/apple-touch-icon-v2.png">
 <link rel="preload" href="/fonts/stardos-stencil-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/courier-prime-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=2">
+<link rel="stylesheet" href="/style.css?v=3">
 {extra}
 </head>"""
 
@@ -266,7 +292,20 @@ def script_textes(d, avec_motifs=False):
     js = dict(d["js"])
     if avec_motifs:
         js["motifs"] = d["motifs"]
-    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=5" defer></script>'
+    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=6" defer></script>'
+
+
+def compte_a_rebours(d, l):
+    """Compte à rebours jusqu'au jour J. site.js le fait tourner ; sans JavaScript, seule la date reste."""
+    cible = datetime(LANCEMENT.year, LANCEMENT.month, LANCEMENT.day, tzinfo=ZoneInfo("Europe/Zurich")).isoformat()
+    blocs = '<span class="jour-j-sep" aria-hidden="true">:</span>'.join(
+        f'<span class="jour-j-bloc"><b data-u="{u}">00</b><span>{e(nom)}</span></span>' for u, nom in zip("jhms", d["jjUnites"]))
+    return f"""<div class="jour-j" data-lancement="{cible}">
+<p class="jour-j-titre">{e(d['jjTitre'])}</p>
+<div class="jour-j-chiffres" role="timer">{blocs}</div>
+<p class="jour-j-fini"><b>{e(d['jjFiniGros'])}</b> {e(d['jjFini'])}</p>
+<p class="jour-j-date">{e(d['jjAvant'])}<time datetime="{LANCEMENT.isoformat()}">{e(date_longue(l))}</time>{e(d['jjApres'])}</p>
+</div>"""
 
 
 def page_accueil(l, avec_jeu):
@@ -319,8 +358,8 @@ def page_accueil(l, avec_jeu):
 <div class="cadre ouverture-grille">
 <div class="ouverture-texte">
 <h1 id="titre">{e(d['h1'])}</h1>
+{compte_a_rebours(d, l)}
 <p class="chapeau">{e(d['chapeau'])}</p>
-<p class="statut">{e(d['statut'])}</p>
 </div>
 <article class="feuille feuille-penchee" id="signer" aria-labelledby="ordre-titre">
 <div class="feuille-tete"><span class="feuille-titre" id="ordre-titre">{e(d['ordreTitre'])}</span><span class="feuille-ref">{e(d['ordreRef'])}</span></div>

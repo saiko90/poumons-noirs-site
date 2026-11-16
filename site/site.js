@@ -37,6 +37,28 @@
     }).catch(() => {});
   }
 
+  // ---------- Compte à rebours jusqu'au jour J ----------
+  const jourJ = document.querySelector("[data-lancement]");
+  if (jourJ) {
+    const cible = Date.parse(jourJ.dataset.lancement);
+    const champs = {};
+    jourJ.querySelectorAll("[data-u]").forEach((el) => { champs[el.dataset.u] = el; });
+    const deux = (n) => String(n).padStart(2, "0");
+    const tic = () => {
+      const reste = cible - Date.now();
+      if (!(reste > 0)) { jourJ.classList.add("fini"); return; }
+      const s = Math.floor(reste / 1000);
+      const valeurs = { j: Math.floor(s / 86400), h: Math.floor(s / 3600) % 24, m: Math.floor(s / 60) % 60, s: s % 60 };
+      for (const u in valeurs) {
+        const texte = deux(valeurs[u]);
+        if (champs[u] && champs[u].textContent !== texte) champs[u].textContent = texte;
+      }
+      jourJ.classList.add("pret");
+      setTimeout(tic, (reste % 1000) + 20);
+    };
+    tic();
+  }
+
   // ---------- Voix du Sergent ----------
   let voix = null;
   function jouer(nom, fin) {

@@ -95,7 +95,23 @@ p { margin: 0 0 1em; }
 .ouverture-grille > * { max-width: 31rem; }
 .ouverture h1 { font-size: clamp(3rem, 5.4vw, 5.3rem); max-width: 10ch; text-shadow: 0 4px 30px rgba(0, 0, 0, .6); }
 .chapeau { font-size: 1.15rem; margin-top: 1.4rem; color: #d9d3c3; text-shadow: 0 2px 18px rgba(0, 0, 0, .8); }
-.statut { display: inline-block; margin: .2rem 0 2.2rem; padding: .35rem .7rem; border: 1px dashed var(--kaki); color: var(--kaki); font-size: .95rem; background: rgba(7, 7, 7, .55); }
+/* Compte à rebours jusqu'au jour J : le chiffre peint au pochoir, le tampon rouge entre les unités. */
+.jour-j { margin: clamp(1.5rem, 2.6vw, 2.1rem) 0 0; }
+.jour-j-titre { margin: 0 0 .6rem; color: var(--kaki); font-size: 1rem; text-shadow: 0 2px 14px rgba(0, 0, 0, .9); }
+.jour-j-chiffres { display: flex; align-items: flex-start; font-size: clamp(3rem, 5vw, 4.6rem); visibility: hidden; opacity: 0; transition: opacity .3s ease; }
+.jour-j.pret .jour-j-chiffres { visibility: visible; opacity: 1; }
+.jour-j-bloc { display: flex; flex-direction: column; align-items: center; }
+.jour-j-bloc b { font: 700 1em/.86 var(--stencil); color: var(--os); font-variant-numeric: tabular-nums; text-shadow: 0 4px 26px rgba(0, 0, 0, .7); }
+.jour-j-bloc span { margin-top: .6rem; font-size: .8rem; line-height: 1; color: var(--gris); }
+.jour-j-sep { font: 700 .72em/1 var(--stencil); color: var(--sang); padding: .04em .24em 0; }
+.jour-j-fini { display: none; margin: 0; font-size: 1.05rem; }
+.jour-j-fini b { display: block; margin-bottom: .45rem; font: 700 clamp(3rem, 5vw, 4.6rem)/.9 var(--stencil); text-transform: uppercase; color: var(--sang); }
+.jour-j.fini .jour-j-titre, .jour-j.fini .jour-j-chiffres, .jour-j.fini .jour-j-date { display: none; }
+.jour-j.fini .jour-j-fini { display: block; }
+.jour-j-date { margin: 1.05rem 0 0; font-size: .95rem; color: #d9d3c3; text-shadow: 0 2px 14px rgba(0, 0, 0, .9); }
+.jour-j-date time { color: var(--os); font-weight: 700; }
+@media (max-width: 350px) { .jour-j-chiffres { font-size: 2.55rem; } .jour-j-bloc span { font-size: .72rem; } }
+@media (prefers-reduced-motion: reduce) { .jour-j-chiffres { transition: none; } }
 .feuille-ligne { margin: 0 0 .4rem; font-size: .98rem; }
 .ouverture .tampon { --taille: 118px; }
 .ouverture .feuille-actions { margin: .8rem 0 1.1rem; }
