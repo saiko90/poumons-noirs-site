@@ -25,7 +25,9 @@
     for (const [nom, motif] of SOURCES) if (motif.test(REFERENT)) return nom;
     return REFERENT.slice(0, 40);
   })();
-  if (!navigator.webdriver && !/bot|crawl|spider|slurp|headless|lighthouse|preview/i.test(navigator.userAgent)) {
+  let estAdmin = false;
+  try { estAdmin = localStorage.getItem("pn_ne_pas_compter") === "1"; } catch (e) {}
+  if (!estAdmin && !navigator.webdriver && !/bot|crawl|spider|slurp|headless|lighthouse|preview/i.test(navigator.userAgent)) {
     fetch(API.replace("pn_recrue", "pn_visite"), {
       method: "POST", keepalive: true,
       headers: { "Content-Type": "application/json", apikey: CLE },
