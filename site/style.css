@@ -194,6 +194,17 @@ p { margin: 0 0 1em; }
 .mini { font-size: .88rem; color: var(--encre-douce); margin: .7rem 0 0; }
 .message { font-weight: 700; margin: .7rem 0 0; min-height: 1.6em; }
 .message[data-etat="erreur"] { color: var(--sang); }
+/* Vote iPhone : un coupon pointillé sous la signature, plein une fois le vote compté */
+.vote-ios { margin: 1rem 0 0; padding-top: .9rem; border-top: 1px dashed var(--papier-bord); }
+.vote-ios-bouton {
+  display: inline-flex; align-items: center; gap: .55rem; padding: .55rem .85rem; text-align: left;
+  font: 700 .95rem/1.35 var(--machine); color: var(--encre); background: transparent;
+  border: 1.5px dashed var(--encre-douce); cursor: pointer;
+}
+.vote-ios-bouton svg { flex: none; width: 1.15rem; height: 1.15rem; }
+.vote-ios-bouton:hover { background: rgba(28, 26, 21, .06); border-style: solid; }
+.vote-ios-bouton[aria-pressed="true"] { cursor: default; font-weight: 400; border: 1.5px solid #3f4a1c; background: rgba(154, 163, 106, .22); }
+.vote-ios-bouton:disabled { opacity: 1; }
 .message[data-etat="ok"] { color: #3f4a1c; }
 .sombre .message[data-etat="ok"] { color: var(--kaki); }
 

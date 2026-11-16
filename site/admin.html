@@ -44,7 +44,7 @@ button { cursor: pointer; }
 .tete .maj { color: var(--gris); font-size: 14px; margin-top: 6px; }
 .tete .actions { display: flex; gap: 10px; }
 .exclure { display: flex; gap: 8px; align-items: center; color: var(--gris); font-size: 14px; margin-top: 8px; cursor: pointer; }
-.chiffres { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 18px; }
+.chiffres { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 18px; }
 .chiffre { background: var(--carte); border: 1px solid var(--trait); border-radius: 8px; padding: 18px 18px 16px; }
 .chiffre .valeur { font: 700 48px/1 var(--stencil); }
 .chiffre .nom { color: var(--os); font-weight: 700; margin-top: 10px; }
@@ -82,6 +82,7 @@ tr:last-child td { border-bottom: 0; }
 }
 @media (max-width: 860px) {
   .chiffres { grid-template-columns: repeat(2, 1fr); }
+  .chiffres .chiffre:last-child { grid-column: 1 / -1; }
   .deux { grid-template-columns: 1fr; }
   .chiffre .valeur { font-size: 40px; }
 }
@@ -121,6 +122,7 @@ tr:last-child td { border-bottom: 0; }
     <div class="chiffre"><div class="valeur" id="k-visites-7">0</div><div class="nom">Visites, 7 jours</div><div class="detail" id="k-visites-jour">0 aujourd'hui</div></div>
     <div class="chiffre"><div class="valeur" id="k-visites-30">0</div><div class="nom">Visites, 30 jours</div><div class="detail" id="k-pages-30">0 pages vues</div></div>
     <div class="chiffre"><div class="valeur" id="k-taux">0 %</div><div class="nom">Taux d'inscription</div><div class="detail">inscrits / visites, 30 jours</div></div>
+    <div class="chiffre"><div class="valeur" id="k-votes-ios">0</div><div class="nom">Votes iPhone</div><div class="detail" id="k-votes-ios-detail">0 cette semaine</div></div>
   </div>
 
   <div class="bloc">
@@ -138,6 +140,9 @@ tr:last-child td { border-bottom: 0; }
     <div class="bloc">
       <h2>Appareils</h2>
       <div id="appareils"></div>
+      <h2 style="margin-top:22px">Android / iPhone</h2>
+      <div id="systemes"></div>
+      <p class="note">Mesuré depuis le 16 novembre au soir : les visites d'avant apparaissent comme « pas encore mesuré ».</p>
       <h2 style="margin-top:22px">Pages vues</h2>
       <div id="pages"></div>
     </div>
@@ -241,6 +246,9 @@ tr:last-child td { border-bottom: 0; }
     sources(d.sources);
     pages(d.pages);
     appareils(d.appareils);
+    systemes(d.systemes || {});
+    $("k-votes-ios").textContent = nf.format(t.votes_ios || 0);
+    $("k-votes-ios-detail").textContent = `${nf.format(t.votes_ios_7j || 0)} cette semaine · ${nf.format(t.inscrits_ios || 0)} inscrit${(t.inscrits_ios || 0) > 1 ? "s" : ""} iPhone`;
     liste(d.recrues);
   }
 
@@ -291,14 +299,35 @@ tr:last-child td { border-bottom: 0; }
       <p class="sous">Mobile ${pm} % (${nf.format(m)}), ordinateur ${100 - pm} % (${nf.format(o)})</p>`;
   }
 
+  const NOMS_SYSTEMES = { ios: "iPhone / iPad", android: "Android", windows: "Windows", mac: "Mac", linux: "Linux", autre: "Autre", inconnu: "Pas encore mesuré" };
+  function systemes(sy) {
+    const i = sy.ios || 0, a = sy.android || 0, tel = i + a;
+    let h = "";
+    if (tel) {
+      const pi = Math.round(100 * i / tel);
+      h += `<div class="appareils"><span style="width:${pi}%;background:#e6e1d3"></span><span style="width:${100 - pi}%;background:#9aa36a"></span></div>
+        <p class="sous">Sur téléphone : iPhone ${pi} % (${nf.format(i)}), Android ${100 - pi} % (${nf.format(a)})</p>`;
+    } else {
+      h += '<p class="vide">Pas encore de visite depuis un téléphone identifié.</p>';
+    }
+    const lignes = Object.entries(sy).sort((x, y) => y[1] - x[1]);
+    if (lignes.length) {
+      h += '<table><thead><tr><th>Système</th><th class="n">Visites</th></tr></thead><tbody>'
+        + lignes.map(([k, n]) => `<tr><td>${esc(NOMS_SYSTEMES[k] || k)}</td><td class="n">${nf.format(n)}</td></tr>`).join("") + "</tbody></table>";
+    }
+    $("systemes").innerHTML = h;
+  }
+
+  const TELEPHONE = { ios: "iPhone", android: "Android" };
   function liste(recrues) {
     $("titre-liste").textContent = `Inscrits (${nf.format(recrues.length)})`;
     $("copier").disabled = $("csv").disabled = !recrues.length;
     if (!recrues.length) { $("liste").innerHTML = '<p class="vide">Aucun inscrit pour l\'instant. Ils arrivent par le formulaire « Signe l\'ordre » du site.</p>'; return; }
-    let s = '<table><thead><tr><th>E-mail</th><th>Inscrit le</th><th>Langue</th><th>Source</th></tr></thead><tbody>';
+    let s = '<table><thead><tr><th>E-mail</th><th>Inscrit le</th><th>Langue</th><th>Téléphone</th><th>Source</th></tr></thead><tbody>';
     for (const r of recrues) {
       const [form, src] = String(r.source || "").split(":");
       s += `<tr><td class="email">${esc(r.email)}</td><td class="date">${fd.format(new Date(r.le))}</td><td class="langue">${esc((r.langue || "").toUpperCase())}</td>
+        <td class="langue">${esc(TELEPHONE[r.plateforme] || "–")}</td>
         <td>${esc(nomSource(src || "inconnue"))}<div class="sous">${esc(FORMULAIRES[form] || form || "")}</div></td></tr>`;
     }
     $("liste").innerHTML = s + "</tbody></table>";
@@ -313,10 +342,10 @@ tr:last-child td { border-bottom: 0; }
 
   $("csv").addEventListener("click", () => {
     const champ = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
-    const lignes = [["email", "inscrit_le", "langue", "source", "formulaire"].join(";")];
+    const lignes = [["email", "inscrit_le", "langue", "telephone", "source", "formulaire"].join(";")];
     for (const r of donnees.recrues) {
       const [form, src] = String(r.source || "").split(":");
-      lignes.push([r.email, fd.format(new Date(r.le)), r.langue, src || "", form || ""].map(champ).join(";"));
+      lignes.push([r.email, fd.format(new Date(r.le)), r.langue, TELEPHONE[r.plateforme] || "", src || "", form || ""].map(champ).join(";"));
     }
     const blob = new Blob(["﻿" + lignes.join("\r\n")], { type: "text/csv;charset=utf-8" });
     const a = document.createElement("a");

@@ -25,15 +25,21 @@
     for (const [nom, motif] of SOURCES) if (motif.test(REFERENT)) return nom;
     return REFERENT.slice(0, 40);
   })();
+  const UA = navigator.userAgent;
+  const SYSTEME = /iPhone|iPad|iPod/i.test(UA) || (/Macintosh/i.test(UA) && navigator.maxTouchPoints > 1) ? "ios"
+    : /Android/i.test(UA) ? "android" : /Windows/i.test(UA) ? "windows" : /Macintosh|Mac OS X/i.test(UA) ? "mac"
+    : /Linux|CrOS/i.test(UA) ? "linux" : "autre";
+  const APPAREIL = /Mobi|Android|iPhone|iPad/i.test(UA) || SYSTEME === "ios" ? "mobile" : "ordi";
   let estAdmin = false;
   try { estAdmin = localStorage.getItem("pn_ne_pas_compter") === "1"; } catch (e) {}
-  if (!estAdmin && !navigator.webdriver && !/bot|crawl|spider|slurp|headless|lighthouse|preview/i.test(navigator.userAgent)) {
+  const compter = !estAdmin && !navigator.webdriver && !/bot|crawl|spider|slurp|headless|lighthouse|preview/i.test(UA);
+  if (compter) {
     fetch(API.replace("pn_recrue", "pn_visite"), {
       method: "POST", keepalive: true,
       headers: { "Content-Type": "application/json", apikey: CLE },
       body: JSON.stringify({ p_page: location.pathname.slice(0, 80), p_langue: L, p_source: SOURCE,
         p_referent: SOURCE === "interne" ? null : REFERENT || null,
-        p_appareil: /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? "mobile" : "ordi" }),
+        p_appareil: APPAREIL, p_os: SYSTEME }),
     }).catch(() => {});
   }
 
@@ -93,6 +99,31 @@
     });
   });
 
+  // ---------- Vote pour la version iPhone (une fois par appareil) ----------
+  let voteIos = false, inscrit = false;
+  try { voteIos = localStorage.getItem("pn_vote_ios") === "1"; inscrit = localStorage.getItem("pn_inscrit") === "1"; } catch (e) {}
+  const boutonsVote = document.querySelectorAll("[data-vote-ios]");
+  const marquerVote = (b) => {
+    b.setAttribute("aria-pressed", "true"); b.disabled = true;
+    b.querySelector("span").textContent = inscrit ? T.voteIosFait : T.voteIosOk;
+  };
+  if (voteIos) boutonsVote.forEach(marquerVote);
+  boutonsVote.forEach((b) => b.addEventListener("click", () => {
+    if (voteIos) return;
+    voteIos = true;
+    try { localStorage.setItem("pn_vote_ios", "1"); } catch (e) {}
+    boutonsVote.forEach(marquerVote);
+    if (compter) {
+      fetch(API.replace("pn_recrue", "pn_vote_ios"), {
+        method: "POST", keepalive: true,
+        headers: { "Content-Type": "application/json", apikey: CLE },
+        body: JSON.stringify({ p_langue: L, p_source: SOURCE, p_os: SYSTEME, p_appareil: APPAREIL }),
+      }).catch(() => {});
+    }
+    const champ = b.closest("form") && b.closest("form").querySelector("input[type=email]");
+    if (champ && !champ.value) champ.focus();
+  }));
+
   // ---------- Liste d'attente (signer l'ordre) ----------
   document.querySelectorAll("form[data-recrue]").forEach((form) => {
     form.addEventListener("submit", async (ev) => {
@@ -108,11 +139,15 @@
         const r = await fetch(API, {
           method: "POST",
           headers: { "Content-Type": "application/json", apikey: CLE },
-          body: JSON.stringify({ p_email: email, p_langue: L, p_source: `${form.dataset.recrue}:${SOURCE}`.slice(0, 40) }),
+          body: JSON.stringify({ p_email: email, p_langue: L, p_source: `${form.dataset.recrue}:${SOURCE}`.slice(0, 40),
+            p_plateforme: voteIos ? "ios" : SYSTEME === "ios" || SYSTEME === "android" ? SYSTEME : null }),
         });
         const j = await r.json().catch(() => ({}));
         if (r.ok && j.ok) {
-          dire(T.recrueOk, "ok");
+          dire(voteIos ? T.recrueOkIos : T.recrueOk, "ok");
+          inscrit = true;
+          try { localStorage.setItem("pn_inscrit", "1"); } catch (e) {}
+          if (voteIos) boutonsVote.forEach(marquerVote);
           champ.value = "";
           jouer("recrue");
           empreinte(form.closest(".feuille"), T.empreinteSigne);

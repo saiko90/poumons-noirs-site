@@ -102,7 +102,7 @@ TXT = {
             ("Pourquoi un sergent qui t'insulte ?", "Parce que certains en ont marre des applis qui les félicitent pour rien. Le Sergent est dur, drôle et cru. Il est réservé aux adultes."),
             ("Combien ça coûte ?", "7 jours d'essai gratuits. Ensuite, le programme complet en paiement unique (49.90 CHF ou 49,99 €), ou un abonnement à 9.90 CHF par mois ou 19.90 CHF par trimestre (9,99 € et 19,99 € en euros), résiliable à tout moment dans Google Play."),
             ("Ça marche pour la vape ?", "Oui. Le mode vape adapte le programme, les calculs et les ordres à la vapoteuse."),
-            ("Et sur iPhone ?", "Pour l'instant, l'appli sort uniquement sur Android."),
+            ("Et sur iPhone ?", "Pour l'instant, l'appli sort uniquement sur Android. Tu es sur iPhone ? Vote pour la version iOS sous le formulaire d'inscription : plus il y a de votes, plus elle arrive vite."),
             ("Mes données sont-elles en sécurité ?", "Tout reste sur ton téléphone. Seul le mode binôme, si tu l'actives, envoie quelques infos pour les montrer à ton binôme. Pas de pub, pas de pisteurs."),
             ("C'est un traitement médical ?", "Non. Opération Poumons Noirs n'est pas un dispositif médical et ne remplace pas un avis médical. Pour un accompagnement, parles-en à ton médecin ou à ton pharmacien."),
             ("Quand sort l'appli ?", f"La sortie sur Google Play est prévue le {date_courte('fr')}. D'ici là, elle est en test fermé. Signe ton ordre en haut de la page : tu reçois un e-mail le jour de la sortie."),
@@ -120,6 +120,10 @@ TXT = {
         "js": {
             "erreurEmail": "Cette adresse ne passe pas. Vérifie ton e-mail.", "erreurReseau": "Pas de réseau. Réessaie dans un instant.",
             "recrueOk": "Recrue enregistrée. Le jour J, le Sergent vient te chercher.", "empreinteSigne": "Mobilisé", "empreinteRecu": "Ordre reçu",
+            "voteIos": "Sur iPhone ? Vote pour la version iOS",
+            "voteIosOk": "Vote iPhone compté. Laisse ton e-mail juste au-dessus : on te prévient quand la version iPhone sort.",
+            "recrueOkIos": "Recrue enregistrée. On te prévient quand la version iPhone sort.",
+            "voteIosFait": "Vote iPhone compté. Tu seras prévenu quand la version iPhone sort.",
             "copie": "Lien copié.", "copieManuelle": "Copie le lien ci-dessus à la main.",
             "waNom": "{n}, le Sergent a un ordre de mission pour toi :", "waSans": "Le Sergent a un ordre de mission pour toi :",
             "partageTitre": "Un ordre du Sergent", "soldat": "Soldat",
@@ -187,7 +191,7 @@ TXT = {
             ("Why a sergeant who insults you?", "Because some people are fed up with apps that congratulate them for nothing. The Sergeant is tough, funny and crude. Adults only."),
             ("How much does it cost?", "A 7-day free trial. Then the full program as a one-time purchase, or a monthly or quarterly subscription you can cancel anytime in Google Play. Prices are shown in your currency in the app."),
             ("Does it work for vaping?", "Yes. Vape mode adapts the program, the numbers and the orders to vaping."),
-            ("What about iPhone?", "For now, the app is launching on Android only."),
+            ("What about iPhone?", "For now, the app is launching on Android only. On iPhone? Vote for the iOS version under the sign-up form: the more votes, the sooner it comes."),
             ("Is my data safe?", "Everything stays on your phone. Only buddy mode, if you turn it on, sends a few details to show them to your buddy. No ads, no trackers."),
             ("Is it a medical treatment?", "No. Operation Black Lungs is not a medical device and is not a substitute for medical advice. For support, talk to your doctor or pharmacist."),
             ("When does the app launch?", f"Launch on Google Play is planned for {date_courte('en')}. Until then, it's in closed testing. Sign your order at the top of the page: you'll get an email on launch day."),
@@ -204,6 +208,10 @@ TXT = {
         "js": {
             "erreurEmail": "That address doesn't work. Check your email.", "erreurReseau": "No connection. Try again in a moment.",
             "recrueOk": "Recruit registered. On D-Day, the Sergeant is coming for you.", "empreinteSigne": "Enlisted", "empreinteRecu": "Order received",
+            "voteIos": "On iPhone? Vote for the iOS version",
+            "voteIosOk": "iPhone vote counted. Leave your email just above: we'll let you know when the iPhone version is out.",
+            "recrueOkIos": "Recruit registered. We'll let you know when the iPhone version is out.",
+            "voteIosFait": "iPhone vote counted. You'll hear from us when the iPhone version is out.",
             "copie": "Link copied.", "copieManuelle": "Copy the link above by hand.",
             "waNom": "{n}, the Sergeant has orders for you:", "waSans": "The Sergeant has orders for you:",
             "partageTitre": "Orders from the Sergeant", "soldat": "Soldier",
@@ -255,7 +263,7 @@ def tete(d, l, titre, desc, chemin, noindex=False, extra="", og=None):
 <link rel="apple-touch-icon" href="/apple-touch-icon-v2.png">
 <link rel="preload" href="/fonts/stardos-stencil-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/courier-prime-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=3">
+<link rel="stylesheet" href="/style.css?v=4">
 {extra}
 </head>"""
 
@@ -278,6 +286,7 @@ def form_signature(d, source):
 </div>
 <p class="message" role="status" aria-live="polite"></p>
 <p class="mini">{e(d['signatureMini'])}</p>
+<div class="vote-ios"><button class="vote-ios-bouton" type="button" data-vote-ios aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 18.6h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>{e(d['js']['voteIos'])}</span></button></div>
 </form>"""
 
 
@@ -292,7 +301,7 @@ def script_textes(d, avec_motifs=False):
     js = dict(d["js"])
     if avec_motifs:
         js["motifs"] = d["motifs"]
-    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=6" defer></script>'
+    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=7" defer></script>'
 
 
 def compte_a_rebours(d, l):
