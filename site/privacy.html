@@ -20,13 +20,13 @@
 <main>
   <p class="lang">Français · <a href="#en">English below</a></p>
   <h1>Opération Poumons Noirs : politique de confidentialité</h1>
-  <p class="maj">Dernière mise à jour : 15 novembre 2026</p>
+  <p class="maj">Dernière mise à jour : 17 novembre 2026</p>
 
   <h2>Qui sommes-nous</h2>
   <p>L'application « Opération Poumons Noirs » (en anglais « Black Lungs ») est éditée par Swiss Digital Studio, Krystel Fiorbianco, Valais, Suisse. Contact : <strong><a href="mailto:contact@swissdigitalstudio.ch">contact@swissdigitalstudio.ch</a></strong>.</p>
 
   <h2>Ce qui reste sur ton téléphone</h2>
-  <p>Ton profil (prénom, e-mail, date de naissance, consommation, raison d'arrêter), ta progression, tes alertes, tes trophées et la photo de ton objectif sont enregistrés <strong>uniquement sur ton téléphone</strong>. Nous ne les recevons pas. Les notifications sont programmées sur ton téléphone.</p>
+  <p>Ton profil (prénom, e-mail si tu le donnes, date de naissance, consommation, raison d'arrêter), ta progression, tes alertes, tes trophées, ton journal des envies et des déclencheurs, ton plan de bataille et la photo de ton objectif sont enregistrés <strong>uniquement sur ton téléphone</strong>. Nous ne les recevons pas. Les notifications et les appels du Sergent sont programmés sur ton téléphone. La vidéo de promotion que tu peux partager est fabriquée sur ton téléphone : tu choisis toi-même avec qui la partager.</p>
 
   <h2>Le binôme (facultatif)</h2>
   <p>Si tu actives le binôme, l'application envoie à notre serveur : ton prénom, la langue de l'appli, ton jour de mission, ta série et les dates de ta dernière signature et de ta dernière rechute. Ces informations servent uniquement à les montrer à ton binôme, et à te montrer les siennes.</p>
@@ -34,8 +34,13 @@
     <li>Aucun compte n'est créé : ton téléphone est reconnu par un code secret tiré au hasard, dont nous ne gardons qu'une empreinte.</li>
     <li>Les données sont hébergées chez Supabase, dans un centre de données de l'Union européenne (Irlande), et transmises de façon chiffrée (HTTPS).</li>
     <li>Tu peux tout effacer à tout moment depuis l'application (Profil → Binôme → « Effacer mes données »).</li>
+    <li>Pour que ton binôme puisse t'envoyer le Sergent (le « savon »), l'application enregistre sur notre serveur un jeton de notification Firebase Cloud Messaging, un service de Google qui achemine la notification. Ce jeton n'est créé que si tu actives le binôme, et il est effacé avec tes données. Un savon est gardé sur le serveur jusqu'à ce qu'il te soit livré, puis effacé avec vos données de binôme.</li>
     <li>Les données d'un téléphone inactif depuis 180 jours sont supprimées automatiquement.</li>
   </ul>
+
+  <h2>Code recrue</h2>
+  <p>Quand tu ouvres ton profil, l'application demande à notre serveur ton code recrue : 6 caractères tirés au hasard. Le serveur garde ce code, l'empreinte de ton code secret et la date. Si tu installes l'application depuis le lien d'un pote, Google Play transmet son code à l'application ; si tu tapes son code toi-même, c'est pareil. Nous enregistrons alors le lien entre les deux codes, pour compter ses recrues. Aucun nom, aucun contact, aucun numéro.</p>
+  <p>Pour effacer ces données : Profil → Binôme → « Effacer mes données », ou écris-nous.</p>
 
   <h2>Achats</h2>
   <p>Les achats et abonnements passent par Google Play. Nous ne recevons aucune donnée de paiement. Voir la <a href="https://policies.google.com/privacy">politique de confidentialité de Google</a>.</p>
@@ -63,13 +68,13 @@
 
   <p class="lang">English</p>
   <h1>Black Lungs: privacy policy</h1>
-  <p class="maj">Last updated: November 15, 2026</p>
+  <p class="maj">Last updated: November 17, 2026</p>
 
   <h2>Who we are</h2>
   <p>The app “Operation Black Lungs” (“Opération Poumons Noirs” in French) is published by Swiss Digital Studio, Krystel Fiorbianco, Valais, Switzerland. Contact: <strong><a href="mailto:contact@swissdigitalstudio.ch">contact@swissdigitalstudio.ch</a></strong>.</p>
 
   <h2>What stays on your phone</h2>
-  <p>Your profile (first name, e-mail, date of birth, consumption, reason for quitting), your progress, alerts, trophies and goal photo are stored <strong>only on your phone</strong>. We never receive them. Notifications are scheduled on your phone.</p>
+  <p>Your profile (first name, e-mail if you give it, date of birth, consumption, reason for quitting), your progress, alerts, trophies, your log of cravings and triggers, your battle plan and goal photo are stored <strong>only on your phone</strong>. We never receive them. Notifications and the Sergeant's calls are scheduled on your phone. The promotion video you can share is made on your phone: you decide who to share it with.</p>
 
   <h2>Buddy mode (optional)</h2>
   <p>If you turn on buddy mode, the app sends our server: your first name, the app language, your mission day, your streak and the dates of your last signature and last relapse. This is only used to show it to your buddy, and to show you theirs.</p>
@@ -77,8 +82,13 @@
     <li>No account is created: your phone is recognized by a random secret code, and we only keep a fingerprint of it.</li>
     <li>Data is hosted by Supabase in a European Union data center (Ireland) and sent encrypted (HTTPS).</li>
     <li>You can delete everything at any time in the app (Profile → Buddy → “Delete my data”).</li>
+    <li>So your buddy can send you the Sergeant (a “chewing-out”), the app stores a Firebase Cloud Messaging notification token on our server. Firebase Cloud Messaging is a Google service that delivers the notification. The token is only created if you turn on buddy mode, and it is deleted with your data. A chewing-out request is kept on the server until it is delivered, then deleted with your buddy data.</li>
     <li>Data from a phone inactive for 180 days is deleted automatically.</li>
   </ul>
+
+  <h2>Recruit code</h2>
+  <p>When you open your profile, the app asks our server for your recruit code: 6 random characters. The server keeps this code, the fingerprint of your secret code and the date. If you install the app from a friend's link, Google Play passes their code to the app; typing their code yourself does the same. We then store the link between the two codes to count their recruits. No name, no contacts, no phone number.</p>
+  <p>To delete this data: Profile → Buddy → “Delete my data”, or write to us.</p>
 
   <h2>Purchases</h2>
   <p>Purchases and subscriptions go through Google Play. We never receive any payment data. See <a href="https://policies.google.com/privacy">Google's privacy policy</a>.</p>
