@@ -218,7 +218,7 @@ p { margin: 0 0 1em; }
 .avertissement { margin-top: 2.2rem; padding: .9rem 1rem; border: 2px solid var(--encre); font-weight: 700; display: inline-block; }
 .telephones { position: relative; min-height: 640px; margin: 0; }
 .telephone { position: absolute; width: min(48%, 260px); border-radius: 26px; border: 7px solid #121212; background: #121212; overflow: hidden; box-shadow: 0 30px 50px -25px rgba(0, 0, 0, .7); }
-.telephone img { width: 100%; height: auto; }
+.telephone img, .telephone video { width: 100%; height: auto; display: block; }
 .telephone:nth-child(1) { left: 0; top: 40px; transform: rotate(-5deg); }
 .telephone:nth-child(2) { left: 26%; top: 0; z-index: 2; transform: rotate(1.5deg); }
 .telephone:nth-child(3) { right: 0; top: 70px; transform: rotate(6deg); }
@@ -409,3 +409,6 @@ p { margin: 0 0 1em; }
 /* Jeu : le Sergent à côté du plateau */
 .jeu-sergent { width: min(100%, 290px); height: auto; margin-top: 1.5rem; }
 @media (max-width: 900px) { .jeu-sergent { display: none; } }
+
+/* Les téléphones suivent la liste du programme (plus longue depuis la 1.0) */
+@media (min-width: 900px) { .telephones { position: sticky; top: 110px; align-self: start; } }

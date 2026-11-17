@@ -266,3 +266,9 @@
     });
   }
 })();
+
+/* Boucle vidéo de l'appel du Sergent : rien ne bouge pour qui a demandé moins d'animations */
+(function () {
+  if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelectorAll('video[data-boucle]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+})();

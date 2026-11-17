@@ -44,7 +44,7 @@ TXT = {
         "chemin": "/", "autre": "en", "autreChemin": "/en", "autreLangue": "English", "locale": "fr_FR",
         "recuChemin": "/ordre",
         "title": "Opération Poumons Noirs : arrête de fumer avec un sergent instructeur",
-        "desc": "Un sergent instructeur dans ta poche pour arrêter de fumer ou de vapoter : 365 ordres vocaux, un SOS contre les envies, un mini-jeu et zéro pitié. Bientôt sur Android.",
+        "desc": "Un sergent instructeur dans ta poche pour arrêter de fumer ou de vapoter : 365 ordres vocaux, des appels vidéo quand tu craques, un SOS contre les envies et zéro pitié. Bientôt sur Android.",
         "marque": "Poumons Noirs", "navLabel": "Navigation", "navProgramme": "Le programme", "navCalcul": "Combien t'as cramé", "navMission": "Envoie le Sergent", "navJeu": "Écrase-Clopes", "navMedias": "Médias",
         "h1": "Arrête de fumer. C'est un ordre.",
         "chapeau": "Opération Poumons Noirs, c'est l'appli où un sergent instructeur te sort de la clope. Un ordre vocal par jour pendant un an, un SOS quand l'envie monte, et pas une once de pitié.",
@@ -62,16 +62,19 @@ TXT = {
         "signatureMini": "Tu reçois un seul e-mail, le jour de la sortie. Ton adresse est effacée au bout de 6 mois.",
         "progTitre": "Le programme", "progChapeau": "Douze mois de discipline, dans ta poche.",
         "prog": [
+            ("Il t'appelle. En vidéo.", "À tes heures de faiblesse, ton téléphone sonne : c'est le Sergent. Une envie ? C'est toi qui l'appelles, il décroche à toute heure."),
             ("365 ordres vocaux", "Chaque jour, un nouvel ordre, avec la vraie voix du Sergent. Il te parle de ta journée, pas d'une brochure."),
             ("SOS envie", "L'envie monte ? Un bouton. Trois minutes avec le Sergent ou sur Écrase-Clopes, et l'envie est morte."),
-            ("Alertes à tes pires moments", "Le café, la pause, l'après-repas : il te tombe dessus juste avant."),
+            ("Les Classes avant le Jour J", "Sept leçons pour connaître ton ennemi, choisir tes armes et monter ton plan de bataille. Déjà arrêté ? Tu reprends où tu en es."),
+            ("L'Arsenal et ses réponses", "Substituts, médicaments, lignes d'aide : ce qui existe, sans blabla. Et des réponses franches aux questions du sevrage, avec leurs sources."),
             ("Ton argent, ton objectif", "Tu choisis ce que tu t'offres avec l'argent sauvé. Il compte chaque franc avec toi."),
-            ("Le binôme", "Fais équipe avec un pote. Chacun voit si l'autre a tenu sa journée."),
+            ("Le binôme", "Fais équipe avec un pote. Il flanche ? Envoie-lui le Sergent passer un savon."),
             ("Clope ou vape", "Tu vapotes ? Même combat, même sergent."),
         ],
         "progAvert": "Langage cru, réservé aux adultes. Si tu veux des câlins, passe ton chemin.",
         "capturesLabel": "Captures d'écran de l'appli",
-        "captures": ["Un sergent dans ta poche : l'ordre du jour", "Le compteur : argent, série, objectif", "SOS envie : trois minutes pour tuer l'envie", "Les trophées, de recrue à légende", "Le rapport de guerre", "Les alertes et le binôme", "Mode clope ou vape"],
+        "captures": ["L'appel vidéo du Sergent", "Un sergent dans ta poche : l'ordre du jour", "SOS envie : trois minutes pour tuer l'envie", "Les Classes avant le Jour J", "Le QG : arsenal, réponses, renfort", "Le rapport de guerre", "Grades et trophées", "Mode clope ou vape"],
+        "altAppel": "Le Sergent Noclope en appel vidéo te pointe du doigt : « Toi, oui toi : pose cette clope. »",
         "calcTitre": "Combien t'as cramé ?", "calcChapeau": "Rentre tes chiffres. Le Sergent fait le compte, et il te dit ce qu'il en pense.",
         "calcFeuille": "Rapport des pertes", "calcRef": "Formulaire PN-02",
         "parJour": "Clopes par jour", "prixPaquet": "Prix du paquet", "devise": "Devise", "parPaquet": "Clopes par paquet", "annees": "Années de clope",
@@ -100,10 +103,12 @@ TXT = {
         "faq": [
             ("C'est quoi, Opération Poumons Noirs ?", "Une appli Android pour arrêter de fumer ou de vapoter. Un sergent instructeur te donne un ordre vocal par jour pendant 365 jours, t'aide à tenir face aux envies et suit tes progrès : jours tenus, argent économisé, trophées."),
             ("Pourquoi un sergent qui t'insulte ?", "Parce que certains en ont marre des applis qui les félicitent pour rien. Le Sergent est dur, drôle et cru. Il est réservé aux adultes."),
-            ("Combien ça coûte ?", "7 jours d'essai gratuits. Ensuite, le programme complet en paiement unique (49.90 CHF ou 49,99 €), ou un abonnement à 9.90 CHF par mois ou 19.90 CHF par trimestre (9,99 € et 19,99 € en euros), résiliable à tout moment dans Google Play."),
+            ("Combien ça coûte ?", "Le SOS, l'Écrase-Clopes, le rapport de guerre, les trophées, les Classes, l'Arsenal et le binôme sont gratuits, pour toujours. Le programme complet (les 365 ordres et les appels du Sergent) s'essaie 7 jours gratuitement, puis coûte 39.90 CHF (39,99 €) en paiement unique, sans abonnement. Ou 6.90 CHF (6,99 €) par mois, ou 14.90 CHF (14,99 €) par trimestre, résiliables à tout moment dans Google Play."),
+            ("J'ai déjà arrêté. Ça sert encore ?", "Oui. À l'enrôlement, choisis « J'ai déjà arrêté » et la date de ton premier jour sans : ces jours comptent comme tenus, et le Sergent reprend à partir de là."),
+            ("Le Sergent m'appelle vraiment ?", "Oui, dans l'appli : à tes heures de faiblesse, ton téléphone sonne et le Sergent apparaît en vidéo. Ce n'est pas un appel téléphonique, et tu peux couper les appels dans ton profil."),
             ("Ça marche pour la vape ?", "Oui. Le mode vape adapte le programme, les calculs et les ordres à la vapoteuse."),
             ("Et sur iPhone ?", "Pour l'instant, l'appli sort uniquement sur Android. Tu es sur iPhone ? Vote pour la version iOS sous le formulaire d'inscription : plus il y a de votes, plus elle arrive vite."),
-            ("Mes données sont-elles en sécurité ?", "Tout reste sur ton téléphone. Seul le mode binôme, si tu l'actives, envoie quelques infos pour les montrer à ton binôme. Pas de pub, pas de pisteurs."),
+            ("Mes données sont-elles en sécurité ?", "Tout reste sur ton téléphone. Seuls le binôme et le code recrue, si tu les utilises, passent par notre serveur, et tu peux tout effacer depuis l'appli. Pas de pub, pas de pisteurs."),
             ("C'est un traitement médical ?", "Non. Opération Poumons Noirs n'est pas un dispositif médical et ne remplace pas un avis médical. Pour un accompagnement, parles-en à ton médecin ou à ton pharmacien."),
             ("Quand sort l'appli ?", f"La sortie sur Google Play est prévue le {date_courte('fr')}. D'ici là, elle est en test fermé. Signe ton ordre en haut de la page : tu reçois un e-mail le jour de la sortie."),
         ],
@@ -133,7 +138,7 @@ TXT = {
         "chemin": "/en", "autre": "fr", "autreChemin": "/", "autreLangue": "Français", "locale": "en_US",
         "recuChemin": "/order",
         "title": "Operation Black Lungs: quit smoking with a drill sergeant",
-        "desc": "A drill sergeant in your pocket to quit smoking or vaping: 365 voiced orders, a craving SOS, a mini-game and zero mercy. Coming soon on Android.",
+        "desc": "A drill sergeant in your pocket to quit smoking or vaping: 365 voiced orders, video calls when you crack, a craving SOS and zero mercy. Coming soon on Android.",
         "marque": "Black Lungs", "navLabel": "Navigation", "navProgramme": "The program", "navCalcul": "Money burned", "navMission": "Send the Sergeant", "navJeu": "Cig Crush", "navMedias": "Media",
         "h1": "Quit smoking. That's an order.",
         "chapeau": "Operation Black Lungs is the app where a drill sergeant gets you off cigarettes. One voiced order a day for a year, an SOS when cravings hit, and not an ounce of mercy.",
@@ -151,16 +156,19 @@ TXT = {
         "signatureMini": "You get one single email, on launch day. Your address is deleted after 6 months.",
         "progTitre": "The program", "progChapeau": "Twelve months of discipline, in your pocket.",
         "prog": [
+            ("He calls you. On video.", "At your weakest hours, your phone rings: it's the Sergeant. Craving? You call him, he picks up at any hour."),
             ("365 voiced orders", "A new order every day, in the Sergeant's real voice. He talks about your day, not a leaflet."),
             ("Craving SOS", "Craving coming? One button. Three minutes with the Sergeant or on Cig Crush, and the craving is dead."),
-            ("Alerts at your worst moments", "Coffee, breaks, after meals: he jumps on you right before."),
+            ("Boot camp before D-Day", "Seven lessons to know your enemy, pick your weapons and build your battle plan. Already quit? Pick up where you are."),
+            ("The Arsenal and its answers", "Nicotine replacement, medication, quitlines: what exists, no fluff. And straight answers to quitting questions, with sources."),
             ("Your money, your goal", "Pick what you'll buy with the money you save. He counts every cent with you."),
-            ("Buddy mode", "Team up with a friend. Each of you sees whether the other held the line today."),
+            ("Buddy mode", "Team up with a friend. Buddy slipping? Send the Sergeant to chew them out."),
             ("Smoke or vape", "You vape? Same fight, same sergeant."),
         ],
         "progAvert": "Crude language, adults only. If you want hugs, keep walking.",
         "capturesLabel": "App screenshots",
-        "captures": ["A sergeant in your pocket: the order of the day", "The counter: money, streak, goal", "Craving SOS: three minutes to kill the craving", "Trophies, from recruit to legend", "The war report", "Alerts and buddy mode", "Smoke or vape mode"],
+        "captures": ["The Sergeant's video call", "A sergeant in your pocket: the order of the day", "Craving SOS: three minutes to kill the craving", "Boot camp before D-Day", "HQ: arsenal, answers, backup", "The war report", "Ranks and trophies", "Smoke or vape mode"],
+        "altAppel": "Sergeant Noclope on a video call points at you: “You, yes you: put that cigarette down.”",
         "calcTitre": "How much have you burned?", "calcChapeau": "Enter your numbers. The Sergeant does the math, and tells you what he thinks.",
         "calcFeuille": "Damage report", "calcRef": "Form BL-02",
         "parJour": "Cigarettes per day", "prixPaquet": "Pack price", "devise": "Currency", "parPaquet": "Cigarettes per pack", "annees": "Years smoking",
@@ -189,10 +197,12 @@ TXT = {
         "faq": [
             ("What is Operation Black Lungs?", "An Android app to quit smoking or vaping. A drill sergeant gives you one voiced order a day for 365 days, helps you hold out against cravings and tracks your progress: days held, money saved, trophies."),
             ("Why a sergeant who insults you?", "Because some people are fed up with apps that congratulate them for nothing. The Sergeant is tough, funny and crude. Adults only."),
-            ("How much does it cost?", "A 7-day free trial. Then the full program as a one-time purchase, or a monthly or quarterly subscription you can cancel anytime in Google Play. Prices are shown in your currency in the app."),
+            ("How much does it cost?", "SOS, Cig Crush, the war report, trophies, boot camp, the Arsenal and buddy mode are free, forever. The full program (all 365 orders and the Sergeant's calls) comes with a 7-day free trial, then a one-time purchase of $39.99 (no subscription), or $6.99 a month or $14.99 a quarter, cancel anytime in Google Play. Prices are shown in your currency in the app."),
+            ("I already quit. Is it still useful?", "Yes. When you enlist, pick “I already quit” and the date of your first smoke-free day: those days count as held, and the Sergeant takes it from there."),
+            ("Does the Sergeant really call me?", "Yes, inside the app: at your weakest hours your phone rings and the Sergeant appears on video. It isn't a phone call, and you can turn calls off in your profile."),
             ("Does it work for vaping?", "Yes. Vape mode adapts the program, the numbers and the orders to vaping."),
             ("What about iPhone?", "For now, the app is launching on Android only. On iPhone? Vote for the iOS version under the sign-up form: the more votes, the sooner it comes."),
-            ("Is my data safe?", "Everything stays on your phone. Only buddy mode, if you turn it on, sends a few details to show them to your buddy. No ads, no trackers."),
+            ("Is my data safe?", "Everything stays on your phone. Only buddy mode and recruit codes, if you use them, go through our server, and you can delete it all from the app. No ads, no trackers."),
             ("Is it a medical treatment?", "No. Operation Black Lungs is not a medical device and is not a substitute for medical advice. For support, talk to your doctor or pharmacist."),
             ("When does the app launch?", f"Launch on Google Play is planned for {date_courte('en')}. Until then, it's in closed testing. Sign your order at the top of the page: you'll get an email on launch day."),
         ],
@@ -329,12 +339,15 @@ def page_accueil(l, avec_jeu):
     ]
     extra = "".join(f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in jsonld)
     prog = "".join(f"<li><h3>{e(t)}</h3><p>{e(p)}</p></li>" for t, p in d["prog"])
-    phones = "".join(f'<div class="telephone"><img src="/img/{l}/capture_{i}-v2.webp" alt="{e(d["captures"][i-1])}" width="540" height="960" loading="lazy"></div>' for i in (1, 3, 5))
+    def tel(i): return f'<div class="telephone"><img src="/img/{l}/capture_{i}-v3.webp" alt="{e(d["captures"][i-1])}" width="540" height="960" loading="lazy"></div>'
+    appel = (f'<div class="telephone"><video data-boucle autoplay muted loop playsinline preload="metadata" width="540" height="960" poster="/video/appel-sergent-{l}.jpg" '
+             f'aria-label="{e(d["altAppel"])}"><source src="/video/appel-sergent-{l}.mp4" type="video/mp4"></video></div>')
+    phones = tel(2) + appel + tel(4)
     devises = "".join(f'<option value="{e(v)}">{e(t)}</option>' for v, t in d["devises"])
     motifs = "".join(
         f'<label class="motif"><input type="radio" name="motif" value="{m}"{" checked" if m == "lundi" else ""}><span class="case" aria-hidden="true"></span><span>{e(d["motifs"][m])}</span></label>'
         for m in MOTIFS)
-    captures = "".join(f'<img src="/img/{l}/capture_{i}-v2.webp" alt="{e(d["captures"][i-1])}" width="540" height="960" loading="lazy" role="listitem">' for i in range(1, 8))
+    captures = "".join(f'<img src="/img/{l}/capture_{i}-v3.webp" alt="{e(d["captures"][i-1])}" width="540" height="960" loading="lazy" role="listitem">' for i in range(1, 9))
     faq = "".join(f"<details><summary>{e(q)}</summary><p>{e(r)}</p></details>" for q, r in d["faq"])
     noms_videos = ["sergent-toi-oui-toi", "sergent-debout"]
     videos_sergent = "\n".join(
