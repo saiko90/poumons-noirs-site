@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Opération Poumons Noirs : le Sergent te recrute</title>
+<meta name="description" content="Un pote t'envoie le Sergent Noclope pour arrêter de fumer. Avec son code recrue, 14 jours d'essai gratuit.">
+<meta property="og:title" content="Le Sergent Noclope te recrute">
+<meta property="og:description" content="Un pote t'envoie le Sergent pour arrêter de fumer. Avec son code recrue : 14 jours d'essai gratuit.">
+<meta property="og:image" content="https://www.poumonsnoirs.com/img/og-fr-v2.jpg">
+<link rel="icon" href="/favicon-v2.png">
+<style>
+  @font-face { font-family: "Stardos Stencil"; src: url("/fonts/stardos-stencil-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+  body { margin: 0; min-height: 100vh; background: #0b0c0b radial-gradient(ellipse at 50% 0%, #3a0d0d 0%, #0b0c0b 62%); color: #e6e1d3;
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 520px; margin: 0 auto; padding: 44px 22px 60px; text-align: center; }
+  .marque { color: #9aa36a; font-size: 13px; letter-spacing: 4px; text-transform: uppercase; margin: 0 0 28px; }
+  img.sergent { width: 210px; height: auto; display: block; margin: 0 auto -6px; }
+  h1 { font-family: "Stardos Stencil", Georgia, serif; font-weight: 700; font-size: 40px; line-height: 1.05; margin: 0 0 14px; letter-spacing: 1px; }
+  p { margin: 0 0 14px; }
+  .code { margin: 26px auto 8px; padding: 14px 10px 10px; border: 1.5px solid #6f7a3e; background: rgba(111, 122, 62, .12); }
+  .code small { display: block; color: #9aa36a; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; }
+  .code strong { display: block; font-family: "Stardos Stencil", Georgia, serif; font-weight: 700; font-size: 46px; letter-spacing: 10px; padding-left: 10px; }
+  a.bouton { display: block; margin: 24px 0 12px; padding: 18px 16px; background: #a3121a; color: #fff; text-decoration: none; font-weight: 700;
+             letter-spacing: 2px; text-transform: uppercase; border: 1.5px solid #e5484d; }
+  a.bouton:focus-visible, a:focus-visible { outline: 3px solid #e6e1d3; outline-offset: 3px; }
+  .aide { color: #8a9196; font-size: 14px; }
+  .aide strong { color: #c9c3b3; }
+  footer { margin-top: 40px; font-size: 13px; color: #6d7377; }
+  footer a { color: #9aa36a; }
+</style>
+</head>
+<body>
+<main>
+  <p class="marque">Opération Poumons Noirs</p>
+  <img class="sergent" src="/img/sergent/salut.webp" alt="" width="210" height="197">
+  <h1 id="titre">Le Sergent te recrute.</h1>
+  <p id="intro">Un pote t'envoie le Sergent Noclope pour arrêter de fumer. Avec son code, tu as 14 jours d'essai gratuit au lieu de 7.</p>
+  <div class="code" id="bloc-code" hidden>
+    <small id="code-label">Code recrue</small>
+    <strong id="code"></strong>
+  </div>
+  <a class="bouton" id="installer" href="https://play.google.com/store/apps/details?id=ch.swissdigitalstudio.poumonsnoirs">Installer sur Google Play</a>
+  <p class="aide" id="aide">Le code s'applique tout seul à l'installation. Sinon : dans l'appli, <strong>PROFIL → RECRUTEMENT</strong>, et tu le tapes.</p>
+  <footer><a href="/" id="site">Découvrir l'appli</a> · Android</footer>
+</main>
+<script>
+(function () {
+  var PAQUET = "ch.swissdigitalstudio.poumonsnoirs";
+  var brut = (location.pathname.split("/r/")[1] || "").split("/")[0];
+  var code = decodeURIComponent(brut).trim().toUpperCase();
+  if (!/^[ABCDEFGHJKLMNPQRSTUVWXYZ23456789]{6}$/.test(code)) code = "";
+  var lien = "https://play.google.com/store/apps/details?id=" + PAQUET;
+  if (code) {
+    lien += "&referrer=" + encodeURIComponent("utm_source=recrue&utm_medium=lien&utm_content=" + code);
+    document.getElementById("code").textContent = code;
+    document.getElementById("bloc-code").hidden = false;
+  }
+  document.getElementById("installer").href = lien;
+
+  var fr = /^fr\b/i.test(navigator.language || "fr");
+  if (!fr) {
+    document.documentElement.lang = "en";
+    document.title = "Black Lungs: you've been recruited";
+    document.getElementById("titre").textContent = "You've been recruited.";
+    document.getElementById("intro").textContent = "A friend is sending you Sergeant Noclope to quit smoking. With their code, you get a 14-day free trial instead of 7.";
+    document.getElementById("code-label").textContent = "Recruit code";
+    document.getElementById("installer").textContent = "Get it on Google Play";
+    document.getElementById("aide").innerHTML = "The code applies itself when you install. If not: in the app, <strong>PROFILE → RECRUITING</strong>, and type it in.";
+    document.getElementById("site").textContent = "About the app";
+    document.getElementById("site").href = "/en";
+  }
+  if (!code) {
+    document.getElementById("aide").hidden = true;
+    document.getElementById("intro").textContent = fr
+      ? "Le Sergent Noclope t'attend pour arrêter de fumer. Ce lien n'a pas de code valide : demande-le à ton pote, tu le taperas dans l'appli."
+      : "Sergeant Noclope is waiting to help you quit smoking. This link has no valid code: ask your friend for it and type it in the app.";
+  }
+})();
+</script>
+</body>
+</html>

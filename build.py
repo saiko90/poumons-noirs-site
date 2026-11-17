@@ -529,7 +529,7 @@ def main():
         "en.html": page_accueil("en", avec_jeu),
         "ordre.html": page_recu("fr"),
         "order.html": page_recu("en"),
-        "robots.txt": f"User-agent: *\nAllow: /\nDisallow: /ordre\nDisallow: /order\nSitemap: {BASE}/sitemap.xml\n",
+        "robots.txt": f"User-agent: *\nAllow: /\nDisallow: /ordre\nDisallow: /order\nDisallow: /r/\nSitemap: {BASE}/sitemap.xml\n",
         "sitemap.xml": f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <url><loc>{BASE}/</loc><xhtml:link rel="alternate" hreflang="fr" href="{BASE}/"/><xhtml:link rel="alternate" hreflang="en" href="{BASE}/en"/></url>

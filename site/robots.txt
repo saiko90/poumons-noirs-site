@@ -2,4 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /ordre
 Disallow: /order
+Disallow: /r/
 Sitemap: https://www.poumonsnoirs.com/sitemap.xml
