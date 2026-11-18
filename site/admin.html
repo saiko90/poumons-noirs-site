@@ -131,6 +131,18 @@ tr:last-child td { border-bottom: 0; }
     <div id="graphe"></div>
   </div>
 
+  <div class="bloc" style="margin-bottom:18px">
+    <h2>Dans l'appli, 30 derniers jours</h2>
+    <div class="deux" style="margin-top:6px">
+      <div><h2 style="font-size:15px">Parcours d'une recrue</h2><div id="appli-entonnoir"><p class="vide">Chargement…</p></div></div>
+      <div><h2 style="font-size:15px">Appels du Sergent</h2><div id="appli-appels"></div>
+        <h2 style="font-size:15px;margin-top:18px">Paywall et achats</h2><div id="appli-offres"></div></div>
+    </div>
+    <h2 style="font-size:15px;margin-top:18px">Toutes les étapes</h2>
+    <div id="appli-evenements"></div>
+    <p class="note" id="appli-note">Statistiques anonymes envoyées par l'appli (sans identifiant). Elles arrivent par paquets, quand la recrue rouvre l'appli.</p>
+  </div>
+
   <div class="deux">
     <div class="bloc">
       <h2>D'où viennent les visiteurs</h2>
@@ -250,6 +262,60 @@ tr:last-child td { border-bottom: 0; }
     $("k-votes-ios").textContent = nf.format(t.votes_ios || 0);
     $("k-votes-ios-detail").textContent = `${nf.format(t.votes_ios_7j || 0)} cette semaine · ${nf.format(t.inscrits_ios || 0)} inscrit${(t.inscrits_ios || 0) > 1 ? "s" : ""} iPhone`;
     liste(d.recrues);
+    if (cle) appli();
+  }
+
+  // ── Statistiques anonymes de l'appli ──
+  const API_APPLI = "https://srcvnqfgtazupuzwznrr.supabase.co/rest/v1/rpc/pn_admin_appli";
+  const ETAPES = { installation: "Installations", enrolement_fini: "Enrôlements terminés", vu_tuto: "Visite guidée finie",
+    vu_offre: "Offre de fin d'enrôlement vue", vu_j6: "Bilan du 6e jour vu", vu_arsenal: "Arsenal ouvert", vu_classes_accueil: "Classes ouvertes",
+    classe_finie: "Leçons des Classes finies", jour_signe: "Jours signés", sos_ouvert: "SOS ouverts", sos_reussi: "Envies tuées (SOS)",
+    rechute: "Rechutes", appel_decroche: "Appels décrochés", appel_raccroche: "Appels raccrochés", appel_manque: "Appels manqués",
+    offre_vue: "Paywall vu", achat: "Achats", binome_actif: "Binômes activés", savon_envoye: "Savons envoyés",
+    avis_demande: "Demandes d'avis Google Play", renfort: "Renfort ouvert", partage: "Partages", jeu_partie: "Parties d'Écrase-Clopes",
+    recommence: "Enrôlement recommencé" };
+  const CONTEXTES = { sos: "SOS", faib: "Heure de faiblesse", racc: "Il rappelle", savon: "Savon du binôme", jourj: "Jour J", matin: "Matin",
+    debrief: "Débriefing", grade: "Promotion", tuto: "Visite" };
+  async function appli() {
+    try {
+      const r = await fetch(API_APPLI, { method: "POST", headers: { "Content-Type": "application/json", apikey: CLE_PUBLIQUE }, body: JSON.stringify({ p_cle: cle }) });
+      if (!r.ok) throw new Error("reseau");
+      const d = await r.json();
+      if (d.ok) afficherAppli(d);
+    } catch (e) { $("appli-entonnoir").innerHTML = '<p class="vide">Statistiques de l\'appli indisponibles pour le moment.</p>'; }
+  }
+  function afficherAppli(d) {
+    const e = d.entonnoir || [];
+    if (!e.some((x) => x.n)) $("appli-entonnoir").innerHTML = '<p class="vide">Pas encore de données : elles arrivent avec la version 1.0 (12).</p>';
+    else {
+      let s = '<table><thead><tr><th>Étape</th><th class="n">Nombre</th><th class="n">vs étape d\'avant</th></tr></thead><tbody>';
+      e.forEach((x, i) => {
+        const avant = i ? e[i - 1].n : 0;
+        const taux = i && avant ? `${Math.round(100 * x.n / avant)} %` : "";
+        s += `<tr><td>${esc(x.etape)}</td><td class="n">${nf.format(x.n)}</td><td class="n">${taux}</td></tr>`;
+      });
+      const p = d.parcours || {};
+      $("appli-entonnoir").innerHTML = s + `</tbody></table><p class="sous">Enrôlements : ${nf.format(p.clope || 0)} clope, ${nf.format(p.vape || 0)} vape</p>`;
+    }
+    const det = d.details || [];
+    const appels = {};
+    for (const x of det.filter((x) => x.evenement.startsWith("appel_"))) {
+      const c = appels[x.detail] || (appels[x.detail] = { appel_decroche: 0, appel_raccroche: 0, appel_manque: 0 });
+      c[x.evenement] = x.n30;
+    }
+    const lignesAppels = Object.entries(appels);
+    $("appli-appels").innerHTML = !lignesAppels.length ? '<p class="vide">Aucun appel pour l\'instant.</p>' :
+      '<table><thead><tr><th>Appel</th><th class="n">Décrochés</th><th class="n">Raccrochés</th><th class="n">Manqués</th></tr></thead><tbody>' +
+      lignesAppels.map(([c, v]) => `<tr><td>${esc(CONTEXTES[c] || c)}</td><td class="n">${nf.format(v.appel_decroche)}</td><td class="n">${nf.format(v.appel_raccroche)}</td><td class="n">${nf.format(v.appel_manque)}</td></tr>`).join("") + "</tbody></table>";
+    const offres = det.filter((x) => x.evenement === "offre_vue" || x.evenement === "achat");
+    $("appli-offres").innerHTML = !offres.length ? '<p class="vide">Aucun paywall vu ni achat pour l\'instant.</p>' :
+      '<table><tbody>' + offres.map((x) => `<tr><td>${x.evenement === "achat" ? "Achat" : "Paywall vu"} : ${esc(x.detail)}</td><td class="n">${nf.format(x.n30)}</td></tr>`).join("") + "</tbody></table>";
+    const ev = d.evenements || [];
+    $("appli-evenements").innerHTML = !ev.length ? '<p class="vide">Aucune étape reçue pour l\'instant.</p>' :
+      '<table><thead><tr><th>Étape</th><th class="n">7 jours</th><th class="n">30 jours</th><th class="n">Depuis le début</th></tr></thead><tbody>' +
+      ev.map((x) => `<tr><td>${esc(ETAPES[x.evenement] || x.evenement)}</td><td class="n">${nf.format(x.n7)}</td><td class="n">${nf.format(x.n30)}</td><td class="n">${nf.format(x.total)}</td></tr>`).join("") + "</tbody></table>";
+    const v = (d.versions || []).map((x) => `${esc(x.version)} (${nf.format(x.n)})`).join(", ");
+    if (v) $("appli-note").textContent = `Statistiques anonymes envoyées par l'appli (sans identifiant), par paquets quand la recrue rouvre l'appli. Versions cette semaine : ${v.replace(/&amp;/g, "&")}.`;
   }
 
   function graphe(jours) {
