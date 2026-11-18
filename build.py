@@ -113,7 +113,7 @@ TXT = {
             ("Quand sort l'appli ?", f"La sortie sur Google Play est prévue le {date_courte('fr')}. D'ici là, elle est en test fermé. Signe ton ordre en haut de la page : tu reçois un e-mail le jour de la sortie."),
         ],
         "faqLien": "Les détails sont dans la politique de confidentialité.",
-        "pied": "Opération Poumons Noirs est une appli de Swiss Digital Studio, Krystel Fiorbianco, Valais, Suisse.",
+        "pied": "Opération Poumons Noirs est une appli de Swiss Digital Studio, Michaël Kaeser, Valais, Suisse.",
         "confidentialite": "Confidentialité", "suppression": "Supprimer mes données",
         # Page « un ordre t'attend »
         "recuTitle": "Le Sergent a un ordre de mission pour toi", "recuDesc": "Quelqu'un qui tient à toi t'envoie le Sergent. Ouvre et écoute.",
@@ -207,7 +207,7 @@ TXT = {
             ("When does the app launch?", f"Launch on Google Play is planned for {date_courte('en')}. Until then, it's in closed testing. Sign your order at the top of the page: you'll get an email on launch day."),
         ],
         "faqLien": "Details are in the privacy policy.",
-        "pied": "Operation Black Lungs is an app by Swiss Digital Studio, Krystel Fiorbianco, Valais, Switzerland.",
+        "pied": "Operation Black Lungs is an app by Swiss Digital Studio, Michaël Kaeser, Valais, Switzerland.",
         "confidentialite": "Privacy", "suppression": "Delete my data",
         "recuTitle": "The Sergeant has orders for you", "recuDesc": "Someone who cares about you sent the Sergeant. Open and listen.",
         "recuTitre": "Mission order", "recuRef": "Ref. BL-07", "recuPour": "For the attention of",
