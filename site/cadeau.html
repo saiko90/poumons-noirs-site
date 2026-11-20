@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Opération Poumons Noirs : un cadeau t'attend</title>
+<meta name="description" content="Quelqu'un t'offre 12 mois avec le Sergent Noclope pour arrêter de fumer. Le paquet s'ouvre au jour dit.">
+<meta property="og:title" content="Un cadeau t'attend">
+<meta property="og:description" content="Quelqu'un t'offre 12 mois avec le Sergent Noclope pour arrêter de fumer. Le paquet s'ouvre au jour dit, pas avant.">
+<meta property="og:image" content="https://www.poumonsnoirs.com/img/og-cadeau.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon-v2.png">
+<style>
+  @font-face { font-family: "Stardos Stencil"; src: url("/fonts/stardos-stencil-latin-700-normal.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+  :root { --os: #e6e1d3; --kaki: #9aa36a; --rouge: #e5484d; --sang: #a3121a; --gris: #9aa0a4; }
+  body { margin: 0; min-height: 100vh; background: #0b0c0b radial-gradient(ellipse at 50% 0%, #3a0d0d 0%, #0b0c0b 62%); color: var(--os);
+         font: 17px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 520px; margin: 0 auto; padding: 40px 22px 60px; text-align: center; }
+  .marque { color: var(--kaki); font-size: 13px; letter-spacing: 4px; text-transform: uppercase; margin: 0 0 22px; }
+  h1, .stencil { font-family: "Stardos Stencil", Georgia, serif; font-weight: 700; }
+  h1 { font-size: 42px; line-height: 1.05; margin: 6px 0 10px; letter-spacing: 1px; overflow-wrap: anywhere; }
+  p { margin: 0 0 14px; }
+  .de { color: var(--gris); }
+  img.sergent { width: 250px; max-width: 70%; height: auto; display: block; margin: 0 auto -4px; }
+  .rebours { display: flex; justify-content: center; gap: 8px; margin: 22px 0 10px; }
+  .rebours div { min-width: 64px; padding: 10px 4px 6px; border: 1.5px solid #6f7a3e; background: rgba(111, 122, 62, .12); }
+  .rebours strong { display: block; font-family: "Stardos Stencil", Georgia, serif; font-size: 34px; line-height: 1; }
+  .rebours small { display: block; color: var(--kaki); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .quand { color: var(--kaki); letter-spacing: 1px; }
+  svg.boite { width: 220px; height: 220px; display: block; margin: 6px auto 0; overflow: visible; }
+  svg.boite .couvercle { transform-box: fill-box; transform-origin: 80% 100%; transition: transform .9s cubic-bezier(.3, 1.4, .6, 1), opacity .9s ease; }
+  svg.boite.secoue { animation: secousse 3s ease-in-out infinite; transform-origin: 50% 90%; }
+  svg.boite.ouverte .couvercle { transform: translate(60px, -150px) rotate(38deg); opacity: 0; }
+  @keyframes secousse { 0%, 78%, 100% { transform: rotate(0); } 82% { transform: rotate(-4deg); } 86% { transform: rotate(4deg); } 90% { transform: rotate(-3deg); } 94% { transform: rotate(2deg); } }
+  button.bouton, a.bouton { display: block; width: 100%; box-sizing: border-box; margin: 22px 0 12px; padding: 18px 16px; background: var(--sang); color: #fff;
+           text-decoration: none; font: 700 16px system-ui, sans-serif; letter-spacing: 2px; text-transform: uppercase; border: 1.5px solid var(--rouge); cursor: pointer; }
+  button.bouton:focus-visible, a:focus-visible { outline: 3px solid var(--os); outline-offset: 3px; }
+  blockquote { margin: 18px 0 8px; padding: 18px 18px 14px; border: 1.5px solid var(--sang); background: rgba(163, 18, 26, .12); font: italic 19px/1.5 Georgia, serif; }
+  blockquote + p { color: var(--gris); }
+  .code { margin: 24px auto 8px; padding: 14px 10px 10px; border: 1.5px solid #6f7a3e; background: rgba(111, 122, 62, .12); }
+  .code small { display: block; color: var(--kaki); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; }
+  .code strong { display: block; font-family: "Stardos Stencil", Georgia, serif; font-size: clamp(28px, 9vw, 40px); letter-spacing: 4px; padding-left: 4px; white-space: nowrap; }
+  .aide { color: var(--gris); font-size: 14px; }
+  .aide strong { color: #c9c3b3; }
+  .apparait { animation: apparait .7s ease both; }
+  @keyframes apparait { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  footer { margin-top: 40px; font-size: 13px; color: #6d7377; }
+  footer a { color: var(--kaki); }
+  [hidden] { display: none !important; }
+  @media (prefers-reduced-motion: reduce) {
+    svg.boite.secoue, .apparait { animation: none; }
+    svg.boite .couvercle { transition: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="marque" id="marque">Opération Poumons Noirs</p>
+
+  <section id="chargement" aria-live="polite"><p id="t-chargement">Le Sergent apporte ton paquet…</p></section>
+
+  <!-- Avant la date : le paquet reste fermé -->
+  <section id="ferme" hidden>
+    <img class="sergent" src="/img/sergent/cadeau.webp" alt="" width="250" height="336">
+    <h1 class="nom-pour"></h1>
+    <p class="de"></p>
+    <div class="rebours" role="timer" aria-live="off">
+      <div><strong id="r-j">0</strong><small id="l-j">jours</small></div>
+      <div><strong id="r-h">00</strong><small id="l-h">heures</small></div>
+      <div><strong id="r-m">00</strong><small id="l-m">min</small></div>
+      <div><strong id="r-s">00</strong><small id="l-s">s</small></div>
+    </div>
+    <p class="quand" id="quand"></p>
+    <p id="t-pas-avant">Pas avant, soldat. Reviens à l'heure dite : le paquet s'ouvrira ici même.</p>
+  </section>
+
+  <!-- La date est passée : on peut ouvrir -->
+  <section id="pret" hidden>
+    <svg class="boite secoue" id="boite" viewBox="0 0 200 200" aria-hidden="true">
+      <g class="corps">
+        <rect x="30" y="98" width="140" height="84" fill="#6e7744"/>
+        <rect x="128" y="98" width="42" height="84" fill="#545c33"/>
+        <rect x="92" y="98" width="16" height="84" fill="#c1121f"/>
+        <rect x="30" y="130" width="140" height="14" fill="#8b0000"/>
+      </g>
+      <g class="couvercle">
+        <rect x="22" y="66" width="156" height="34" fill="#808a50"/>
+        <rect x="22" y="96" width="156" height="4" fill="#000" opacity=".18"/>
+        <rect x="92" y="66" width="16" height="34" fill="#c1121f"/>
+        <ellipse cx="80" cy="56" rx="25" ry="13" transform="rotate(-20 100 64)" fill="#c1121f"/>
+        <ellipse cx="120" cy="56" rx="25" ry="13" transform="rotate(20 100 64)" fill="#c1121f"/>
+        <circle cx="100" cy="63" r="9" fill="#8b0000"/>
+        <line x1="104" y1="66" x2="126" y2="96" stroke="#b8bcc0" stroke-width="2"/>
+        <rect x="118" y="92" width="22" height="28" rx="5" fill="#c9cdd1" stroke="#8a9196" stroke-width="1.5"/>
+      </g>
+    </svg>
+    <h1 class="nom-pour"></h1>
+    <p class="de"></p>
+    <button class="bouton" id="ouvrir" type="button">Ouvrir le cadeau</button>
+  </section>
+
+  <!-- Le paquet est ouvert -->
+  <section id="ouvert" hidden>
+    <img class="sergent apparait" src="/img/sergent/salut.webp" alt="" width="250" height="234">
+    <h1 class="apparait" id="t-titre">12 mois avec le Sergent.</h1>
+    <p class="apparait" id="t-intro">Un programme complet pour arrêter de fumer ou de vapoter : un ordre par jour pendant un an, un SOS quand l'envie monte, et un sergent qui ne lâche rien.</p>
+    <blockquote class="apparait" id="message" hidden></blockquote>
+    <p class="apparait" id="signature" hidden></p>
+    <div class="code apparait" id="bloc-code">
+      <small id="t-code">Ton code cadeau</small>
+      <strong id="code"></strong>
+    </div>
+    <p class="aide apparait" id="t-utilise" hidden>Ce code a déjà été activé dans l'appli.</p>
+    <a class="bouton apparait" id="installer" href="https://play.google.com/store/apps/details?id=ch.swissdigitalstudio.poumonsnoirs">Installer sur Google Play</a>
+    <p class="aide apparait" id="aide">Le code s'active tout seul à l'installation. Sinon : dans l'appli, <strong>écran des offres → J'ai un code</strong>, et tu le tapes.</p>
+  </section>
+
+  <section id="erreur" hidden>
+    <img class="sergent" src="/img/sergent/crie.webp" alt="" width="250" height="250">
+    <h1 id="t-erreur-titre">Paquet introuvable.</h1>
+    <p id="t-erreur">Ce lien de cadeau n'est pas valable. Demande à la personne qui te l'a envoyé de te le renvoyer, en entier.</p>
+  </section>
+
+  <footer><a href="/" id="site">Découvrir l'appli</a> · Android</footer>
+</main>
+<script>
+(function () {
+  var RPC = "https://srcvnqfgtazupuzwznrr.supabase.co/rest/v1/rpc/pn_cadeau_ouvrir";
+  var CLE = "sb_publishable_YUwom0kvnMbpn8Rpug1FaA_1H35zkY_";
+  var PAQUET = "ch.swissdigitalstudio.poumonsnoirs";
+
+  function $(id) { return document.getElementById(id); }
+  function montrer(id) { ["chargement", "ferme", "pret", "ouvert", "erreur"].forEach(function (s) { $(s).hidden = s !== id; }); }
+  function octets(b64url) {
+    var s = b64url.replace(/-/g, "+").replace(/_/g, "/");
+    while (s.length % 4) s += "=";
+    var bin = atob(s), a = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i);
+    return a;
+  }
+
+  // Tout ce qui est personnel est après le # : le navigateur ne l'envoie jamais au serveur
+  var id = decodeURIComponent((location.pathname.split("/cadeau/")[1] || "").split("/")[0]);
+  var pub = null;
+  try { pub = JSON.parse(new TextDecoder().decode(octets(location.hash.slice(1)))); } catch (e) { pub = null; }
+  var en = pub ? pub.l === "en" : !/^fr\b/i.test(navigator.language || "fr");
+
+  var T = en ? {
+    titre: "Black Lungs: a gift is waiting for you", chargement: "The Sergeant is bringing your package…",
+    pour: "For ", cadeau: "A gift for you", de: "From ", jours: "days", heures: "hours", min: "min", s: "sec",
+    pasAvant: "Not before, soldier. Come back at the set time: the package will open right here.",
+    ouvre: "Opens on ", minuit: "at midnight", a: "at ", ouvrir: "Open the gift",
+    titreOuvert: "12 months with the Sergeant.",
+    intro: "A complete program to quit smoking or vaping: one order a day for a year, an SOS when the craving hits, and a sergeant who never lets go.",
+    code: "Your gift code", installer: "Get it on Google Play",
+    aide: "The code activates by itself when you install. If not: in the app, <strong>plans screen → I have a code</strong>, and type it in.",
+    utilise: "This code has already been activated in the app.",
+    erreurTitre: "Package not found.", erreur: "This gift link isn't valid. Ask the person who sent it to send it again, in full.",
+    rembourse: "This gift was cancelled.", reseau: "No network. Reload the page in a moment.", site: "About the app", lieu: "en-US"
+  } : {
+    titre: "Opération Poumons Noirs : un cadeau t'attend", chargement: "Le Sergent apporte ton paquet…",
+    pour: "Pour ", cadeau: "Un cadeau pour toi", de: "De la part de ", jours: "jours", heures: "heures", min: "min", s: "s",
+    pasAvant: "Pas avant, soldat. Reviens à l'heure dite : le paquet s'ouvrira ici même.",
+    ouvre: "S'ouvre le ", minuit: "à minuit", a: "à ", ouvrir: "Ouvrir le cadeau",
+    titreOuvert: "12 mois avec le Sergent.",
+    intro: "Un programme complet pour arrêter de fumer ou de vapoter : un ordre par jour pendant un an, un SOS quand l'envie monte, et un sergent qui ne lâche rien.",
+    code: "Ton code cadeau", installer: "Installer sur Google Play",
+    aide: "Le code s'active tout seul à l'installation. Sinon : dans l'appli, <strong>écran des offres → J'ai un code</strong>, et tu le tapes.",
+    utilise: "Ce code a déjà été activé dans l'appli.",
+    erreurTitre: "Paquet introuvable.", erreur: "Ce lien de cadeau n'est pas valable. Demande à la personne qui te l'a envoyé de te le renvoyer, en entier.",
+    rembourse: "Ce cadeau a été annulé.", reseau: "Pas de réseau. Recharge la page dans un instant.", site: "Découvrir l'appli", lieu: "fr-CH"
+  };
+  document.documentElement.lang = en ? "en" : "fr";
+  document.title = T.titre;
+  $("t-chargement").textContent = T.chargement;
+  $("l-j").textContent = T.jours; $("l-h").textContent = T.heures; $("l-m").textContent = T.min; $("l-s").textContent = T.s;
+  $("t-pas-avant").textContent = T.pasAvant; $("ouvrir").textContent = T.ouvrir;
+  $("t-titre").textContent = T.titreOuvert; $("t-intro").textContent = T.intro; $("t-code").textContent = T.code;
+  $("installer").textContent = T.installer; $("aide").innerHTML = T.aide; $("t-utilise").textContent = T.utilise;
+  $("t-erreur-titre").textContent = T.erreurTitre; $("t-erreur").textContent = T.erreur;
+  if (en) { $("marque").textContent = "Operation Black Lungs"; $("site").textContent = T.site; $("site").href = "/en"; }
+
+  function erreur(texte) { if (texte) $("t-erreur").textContent = texte; montrer("erreur"); }
+  if (!/^[A-Za-z0-9]{12}$/.test(id) || !pub || typeof pub.s !== "string") { erreur(); return; }
+
+  var pour = String(pub.p || "").slice(0, 40), de = String(pub.d || "").slice(0, 40);
+  Array.prototype.forEach.call(document.querySelectorAll(".nom-pour"), function (n) { n.textContent = pour ? T.pour + pour : T.cadeau; });
+  Array.prototype.forEach.call(document.querySelectorAll(".de"), function (n) { n.textContent = de ? T.de + de : ""; });
+
+  function demander() {
+    return fetch(RPC, { method: "POST", headers: { "Content-Type": "application/json", apikey: CLE }, body: JSON.stringify({ p_id: id }) })
+      .then(function (r) { return r.json(); });
+  }
+
+  function dateOuverture(ms) {
+    var d = new Date(ms);
+    var jour = new Intl.DateTimeFormat(T.lieu, { day: "numeric", month: "long" }).format(d);
+    var heure = d.getHours() === 0 && d.getMinutes() === 0 ? T.minuit : T.a + new Intl.DateTimeFormat(T.lieu, { hour: "numeric", minute: "2-digit" }).format(d);
+    return T.ouvre + jour + " " + heure + ".";
+  }
+
+  var minuterie = null;
+  function rebours(ouverture, decalage) {
+    montrer("ferme");
+    $("quand").textContent = dateOuverture(ouverture);
+    function tic() {
+      var reste = Math.max(0, ouverture - (Date.now() + decalage));
+      var s = Math.floor(reste / 1000);
+      $("r-j").textContent = Math.floor(s / 86400);
+      $("r-h").textContent = String(Math.floor(s / 3600) % 24).padStart(2, "0");
+      $("r-m").textContent = String(Math.floor(s / 60) % 60).padStart(2, "0");
+      $("r-s").textContent = String(s % 60).padStart(2, "0");
+      if (reste <= 0) { clearInterval(minuterie); setTimeout(charger, 1500); }
+    }
+    tic(); minuterie = setInterval(tic, 1000);
+  }
+
+  function dechiffrer(cleB64) {
+    var brut = octets(pub.s);
+    var cle = Uint8Array.from(atob(cleB64), function (c) { return c.charCodeAt(0); });
+    return crypto.subtle.importKey("raw", cle, "AES-GCM", false, ["decrypt"])
+      .then(function (k) { return crypto.subtle.decrypt({ name: "AES-GCM", iv: brut.slice(0, 12) }, k, brut.slice(12)); })
+      .then(function (clair) { return JSON.parse(new TextDecoder().decode(clair)); });
+  }
+
+  function devoiler(secret, utilise) {
+    var code = String(secret.c || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    $("code").textContent = code.slice(0, 4) + "-" + code.slice(4);
+    if (secret.m) { $("message").textContent = "« " + secret.m + " »"; $("message").hidden = false; }
+    if (de) { $("signature").textContent = "— " + de; $("signature").hidden = false; }
+    var lien = "https://play.google.com/store/apps/details?id=" + PAQUET;
+    if (utilise) { $("t-utilise").hidden = false; $("aide").hidden = true; }
+    else lien += "&referrer=" + encodeURIComponent("utm_source=cadeau&utm_medium=carte&cadeau=" + code);
+    $("installer").href = lien;
+    montrer("ouvert");
+  }
+
+  function pret(r) {
+    montrer("pret");
+    $("ouvrir").onclick = function () {
+      $("ouvrir").disabled = true;
+      dechiffrer(r.cle).then(function (secret) {
+        var calme = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        $("boite").classList.remove("secoue");
+        $("boite").classList.add("ouverte");
+        setTimeout(function () { devoiler(secret, r.utilise); }, calme ? 0 : 950);
+      }).catch(function () { erreur(); });
+    };
+  }
+
+  function charger() {
+    demander().then(function (r) {
+      if (!r || r.erreur) { erreur(r && r.erreur === "rembourse" ? T.rembourse : null); return; }
+      var decalage = Date.parse(r.maintenant) - Date.now();
+      if (!r.cle) { rebours(Date.parse(r.ouverture), decalage); return; }
+      pret(r);
+    }).catch(function () { erreur(T.reseau); });
+  }
+  charger();
+})();
+</script>
+</body>
+</html>

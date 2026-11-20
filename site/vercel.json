@@ -8,6 +8,7 @@
     ] }
   ],
   "rewrites": [
-    { "source": "/r/:code", "destination": "/r" }
+    { "source": "/r/:code", "destination": "/r" },
+    { "source": "/cadeau/:id", "destination": "/cadeau" }
   ]
 }
