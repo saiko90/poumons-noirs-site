@@ -60,6 +60,28 @@ TXT = {
         "altSergent": "Le Sergent Noclope te pointe du doigt en hurlant.", "altEcrase": "Le Sergent écrase une cigarette dans son poing.",
         "signatureLabel": "Signature de la recrue (ton e-mail)", "emailPlaceholder": "ton@email.ch", "signer": "Signer l'ordre",
         "signatureMini": "Tu reçois un seul e-mail, le jour de la sortie. Ton adresse est effacée au bout de 6 mois.",
+        # Noël : le teaser et l'offre (section affichée seulement en français, la vidéo est en français)
+        "noelTitre": "Livraison spéciale",
+        "noelChapeau": "Pour Noël, le Sergent prépare un cadeau : pour toi, ou pour un proche qui fume encore. Pas touche avant le 4 décembre.",
+        "noelAltVideo": "Teaser de Noël : le Sergent pose un cadeau devant toi, le paquet commence à s'ouvrir… « Pas touche ! Pas avant le 4 décembre ! »",
+        "noelLire": "Lire le teaser",
+        "noelOrdreTitre": "Ordre spécial de Noël", "noelOrdreRef": "Réf. PN-2512",
+        "noelRabaisTampon": "−15 %",
+        "noelRabais": "Rabais spécial Noël : −15 % sur le Programme 12 mois, du 4 au 25 décembre.",
+        "noelInfos": [
+            ("Prix", "33.91\u00a0CHF au lieu de 39.90\u00a0CHF (33,99\u00a0€ au lieu de 39,99\u00a0€), en paiement unique, sans abonnement."),
+            ("Pour qui", "Pour toi, ou à offrir à un proche qui fume."),
+            ("Où", "Dans l'appli, sur Google Play, dès le 4 décembre."),
+        ],
+        "noelEtapesTitre": "Offrir le programme",
+        "noelEtapes": [
+            "Dans l'appli, touche « Pour offrir » : son prénom, le tien et ton message.",
+            "Choisis quand la carte s'ouvre : le 24 décembre au soir, le 25 à minuit, le 1er janvier, tout de suite ou à la date de ton choix.",
+            "Envoie-lui le lien, ou imprime la carte avec son code QR.",
+            "Le jour venu, la carte s'ouvre et lui donne son code : 12 mois avec le Sergent.",
+        ],
+        "noelNote": "Le prénom et le message voyagent chiffrés dans le lien : ils ne sont jamais enregistrés sur nos serveurs. Offrir le programme reste possible toute l'année ; le rabais s'arrête le 25 décembre.",
+        "noelBouton": "Être prévenu le 4 décembre",
         "progTitre": "Le programme", "progChapeau": "Douze mois de discipline, dans ta poche.",
         "prog": [
             ("Il t'appelle. En vidéo.", "À tes heures de faiblesse, ton téléphone sonne : c'est le Sergent. Une envie ? C'est toi qui l'appelles, il décroche à toute heure."),
@@ -273,7 +295,7 @@ def tete(d, l, titre, desc, chemin, noindex=False, extra="", og=None):
 <link rel="apple-touch-icon" href="/apple-touch-icon-v2.png">
 <link rel="preload" href="/fonts/stardos-stencil-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/courier-prime-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/style.css?v=4">
+<link rel="stylesheet" href="/style.css?v=5">
 {extra}
 </head>"""
 
@@ -311,7 +333,7 @@ def script_textes(d, avec_motifs=False):
     js = dict(d["js"])
     if avec_motifs:
         js["motifs"] = d["motifs"]
-    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=7" defer></script>'
+    return f'<script id="textes" type="application/json">{json.dumps(js, ensure_ascii=False)}</script>\n<script src="/site.js?v=8" defer></script>'
 
 
 def compte_a_rebours(d, l):
@@ -365,6 +387,29 @@ def page_accueil(l, avec_jeu):
 <div id="ecrase-clopes" class="jeu" data-lang="{l}"><p class="jeu-aide">{e(d['jeuSansJs'])}</p></div>
 </div>
 </section>"""
+    noel = ""
+    if "noelTitre" in d:
+        infos = "".join(f"<dt>{e(t)}</dt><dd>{e(v)}</dd>" for t, v in d["noelInfos"])
+        etapes = "".join(f"<li>{e(x)}</li>" for x in d["noelEtapes"])
+        noel = f"""
+<section class="section noel" id="noel" aria-labelledby="noel-titre">
+<div class="cadre noel-grille">
+<div class="section-tete noel-tete"><h2 id="noel-titre">{e(d['noelTitre'])}</h2><p>{e(d['noelChapeau'])}</p></div>
+<div class="noel-video" data-teaser>
+<video controls playsinline preload="none" width="720" height="1280" poster="/video/noel-teaser-v1.jpg" aria-label="{e(d['noelAltVideo'])}"><source src="/video/noel-teaser-v1.mp4" type="video/mp4"></video>
+<button class="tampon teaser-lire" type="button" hidden><span><span class="tampon-icone" aria-hidden="true">&#9654;</span>{e(d['noelLire'])}</span></button>
+</div>
+<article class="feuille noel-ordre" aria-labelledby="noel-ordre-titre">
+<div class="feuille-tete"><span class="feuille-titre" id="noel-ordre-titre">{e(d['noelOrdreTitre'])}</span><span class="feuille-ref">{e(d['noelOrdreRef'])}</span></div>
+<p class="noel-rabais"><span class="noel-tampon" aria-hidden="true">{e(d['noelRabaisTampon'])}</span><strong>{e(d['noelRabais'])}</strong></p>
+<dl>{infos}</dl>
+<h3>{e(d['noelEtapesTitre'])}</h3>
+<ol class="noel-etapes">{etapes}</ol>
+<p class="noel-note">{e(d['noelNote'])}</p>
+<a class="bouton" href="#signer">{e(d['noelBouton'])}</a>
+</article>
+</div>
+</section>"""
     medias_classe = "papier" if avec_jeu else "sombre"
     questions_classe = "sombre" if avec_jeu else "papier"
     return f"""{tete(d, l, d['title'], d['desc'], d['chemin'], extra=extra)}
@@ -395,7 +440,7 @@ def page_accueil(l, avec_jeu):
 </article>
 </div>
 </section>
-
+{noel}
 <section class="section papier" id="programme" aria-labelledby="programme-titre">
 <div class="cadre programme-grille">
 <div>

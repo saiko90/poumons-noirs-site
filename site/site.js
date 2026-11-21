@@ -272,3 +272,15 @@
   if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   document.querySelectorAll('video[data-boucle]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
 })();
+
+/* Teaser de Noël : un tampon « Lire » sur l'affiche ; sans JavaScript, les commandes du lecteur restent */
+(function () {
+  document.querySelectorAll('[data-teaser]').forEach(function (bloc) {
+    var v = bloc.querySelector('video'), b = bloc.querySelector('.teaser-lire');
+    if (!v || !b) return;
+    var lancer = function () { b.hidden = true; v.controls = true; };
+    v.controls = false; b.hidden = false;
+    b.addEventListener('click', function () { lancer(); var p = v.play(); if (p && p.catch) p.catch(function () {}); });
+    v.addEventListener('play', lancer);
+  });
+})();
